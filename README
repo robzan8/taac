@@ -1,0 +1,5 @@
+installation:
+go get github.com/robzan8/c2simport
+
+usage:
+c2simport -auth="Bearer blabla" table.csv
