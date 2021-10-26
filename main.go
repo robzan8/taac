@@ -72,13 +72,17 @@ func readVehicles(fileName string) []Vehicle {
 
 	var v []Vehicle
 	r := csv.NewReader(f)
-	for {
+	for i := 0; true; i++ {
 		rec, err := r.Read()
 		if err == io.EOF {
 			break
 		}
 		if err != nil {
 			log.Fatal(err)
+		}
+		// Skip empty lines and possible header.
+		if len(rec) == 0 || i == 0 && rec[0] == "id" {
+			continue
 		}
 		v = append(v, decodeVehicle(rec))
 	}
@@ -114,7 +118,6 @@ func geocodeAddress(s string) Address {
 	base := "https://graphhopper.com/api/1/geocode"
 	q := url.QueryEscape(s)
 	queryUrl := fmt.Sprintf("%s?q=%s&locale=it&debug=true&key=%s", base, q, key)
-	log.Println(queryUrl)
 	resp, err := http.Get(queryUrl)
 	if err != nil {
 		log.Fatal(err)
@@ -134,6 +137,7 @@ func geocodeAddress(s string) Address {
 		log.Fatalf("No geocode hits for address: %s\n", s)
 	}
 	p := hits.Hits[0].Point
+	log.Printf("Address %q geocoded as %f, %f\n", s, p.Lat, p.Lng)
 	return Address{Id: s, Lat: p.Lat, Lon: p.Lng}
 }
 
@@ -174,13 +178,17 @@ func readServices(fileName string) []Service {
 
 	var s []Service
 	r := csv.NewReader(f)
-	for {
+	for i := 0; true; i++ {
 		rec, err := r.Read()
 		if err == io.EOF {
 			break
 		}
 		if err != nil {
 			log.Fatal(err)
+		}
+		// Skip empty lines and possible header.
+		if len(rec) == 0 || i == 0 && rec[0] == "id" {
+			continue
 		}
 		s = append(s, decodeService(rec))
 	}

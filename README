@@ -6,4 +6,7 @@ go get github.com/robzan8/hop
 usage:
 hop vehicles.csv services.csv your-graphhopper-api-key
 
+The header in the csv files is optional and the order of the columns is significant.
+The only vehicle type available is "cargo-bike", with capacity 10.
+
 The program produces solution.json, as returned by graphhopper.
