@@ -1,5 +1,9 @@
+# A command-line interface to the graphhopper route-optimization api
+
 installation:
-go get github.com/robzan8/c2simport
+go get github.com/robzan8/hop
 
 usage:
-c2simport -auth="Bearer blabla" table.csv
+hop vehicles.csv services.csv your-graphhopper-api-key
+
+The program produces solution.json, as returned by graphhopper.
