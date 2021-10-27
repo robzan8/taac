@@ -160,10 +160,10 @@ func unixTimeStamp(hourMin string) int64 {
 }
 
 type Service struct {
-	Id         string  `json:"id"`
-	Address    Address `json:"address"`
-	Size       [1]int  `json:"size"`
-	TimeWindow struct {
+	Id          string  `json:"id"`
+	Address     Address `json:"address"`
+	Size        [1]int  `json:"size"`
+	TimeWindows [1]struct {
 		Earliest int64 `json:"earliest"`
 		Latest   int64 `json:"latest"`
 	} `json:"time_windows"`
@@ -207,8 +207,8 @@ func decodeService(rec []string) Service {
 		log.Fatalf("Invalid integer as service size: %s", rec[2])
 	}
 	s.Size[0] = size
-	s.TimeWindow.Earliest = unixTimeStamp(rec[3])
-	s.TimeWindow.Latest = unixTimeStamp(rec[4])
+	s.TimeWindows[0].Earliest = unixTimeStamp(rec[3])
+	s.TimeWindows[0].Latest = unixTimeStamp(rec[4])
 	return s
 }
 
