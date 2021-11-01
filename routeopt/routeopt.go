@@ -2,10 +2,8 @@ package routeopt
 
 import (
 	"bytes"
-	"encoding/csv"
 	"encoding/json"
 	"fmt"
-	"io"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -82,8 +80,8 @@ type Vehicle struct {
 
 type Address struct {
 	Id  string  `json:"location_id"`
-	Lon float64 `json:"lon"`
 	Lat float64 `json:"lat"`
+	Lon float64 `json:"lon"`
 }
 
 type VehicleType struct {
@@ -100,46 +98,34 @@ var cargoBikeType = VehicleType{
 	Profile:  "bike",
 }
 
-func ReadVehicles(fileName, key string) []Vehicle {
-	f, err := os.Open(fileName)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer f.Close()
-
-	var v []Vehicle
-	r := csv.NewReader(f)
-	for i := 0; true; i++ {
-		rec, err := r.Read()
-		if err == io.EOF {
-			break
+func ParseVehicles(tab [][]string, key string) []Vehicle {
+	var vs []Vehicle
+	for i := 1; i < len(tab); i++ {
+		rec := tab[i]
+		if len(rec) != 7 {
+			log.Fatal("Line in vehicles csv must have 7 entries")
 		}
+		var v Vehicle
+		v.Id = rec[0]
+		v.Type = rec[1]
+		if !supportedVehicleTypes[v.Type] {
+			log.Fatalf("Unsupported vehicle type: %s", v.Type)
+		}
+		v.StartAddress.Id = rec[2]
+		var err error
+		v.StartAddress.Lat, err = strconv.ParseFloat(rec[3], 64)
 		if err != nil {
-			log.Fatal(err)
+			log.Fatalf("Invalid float as latitude: %s", rec[3])
 		}
-		// Skip empty lines and possible header.
-		if len(rec) == 0 || i == 0 && rec[0] == "id" {
-			continue
+		v.StartAddress.Lon, err = strconv.ParseFloat(rec[4], 64)
+		if err != nil {
+			log.Fatalf("Invalid float as longitude: %s", rec[4])
 		}
-		v = append(v, decodeVehicle(rec, key))
+		v.EarliestStart = unixTimeStamp(rec[5])
+		v.LatestEnd = unixTimeStamp(rec[6])
+		vs = append(vs, v)
 	}
-	return v
-}
-
-func decodeVehicle(rec []string, key string) Vehicle {
-	if len(rec) != 5 {
-		log.Fatal("Line in vehicles csv must have 5 entries")
-	}
-	var v Vehicle
-	v.Id = rec[0]
-	v.Type = rec[1]
-	if !supportedVehicleTypes[v.Type] {
-		log.Fatalf("Unsupported vehicle type: %s", v.Type)
-	}
-	v.StartAddress = GeocodeAddress(rec[2], key)
-	v.EarliestStart = unixTimeStamp(rec[3])
-	v.LatestEnd = unixTimeStamp(rec[4])
-	return v
+	return vs
 }
 
 type GeocodeHits struct {
@@ -151,9 +137,9 @@ type GeocodeHits struct {
 	} `json:"hits"`
 }
 
-func GeocodeAddress(s, key string) Address {
+func GeocodeAddress(addr, key string) (lat, lon float64) {
 	base := "https://graphhopper.com/api/1/geocode"
-	q := url.QueryEscape(s)
+	q := url.QueryEscape(addr)
 	queryUrl := fmt.Sprintf("%s?q=%s&locale=it&debug=true&key=%s", base, q, key)
 	resp, err := http.Get(queryUrl)
 	if err != nil {
@@ -171,11 +157,11 @@ func GeocodeAddress(s, key string) Address {
 		log.Fatal(err)
 	}
 	if len(hits.Hits) == 0 {
-		log.Fatalf("No geocode hits for address: %s\n", s)
+		log.Fatalf("No geocode hits for address: %s\n", addr)
 	}
 	p := hits.Hits[0].Point
-	log.Printf("Address %q geocoded as %f, %f\n", s, p.Lat, p.Lng)
-	return Address{Id: s, Lat: p.Lat, Lon: p.Lng}
+	log.Printf("Address %q geocoded as %f, %f\n", addr, p.Lat, p.Lng)
+	return p.Lat, p.Lng
 }
 
 var now = time.Now()
@@ -206,45 +192,50 @@ type Service struct {
 	} `json:"time_windows"`
 }
 
-func ReadServices(fileName, key string) []Service {
-	f, err := os.Open(fileName)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer f.Close()
-
-	var s []Service
-	r := csv.NewReader(f)
-	for i := 0; true; i++ {
-		rec, err := r.Read()
-		if err == io.EOF {
-			break
+func ParseServices(tab [][]string, key string) []Service {
+	var ss []Service
+	for i := 1; i < len(tab); i++ {
+		rec := tab[i]
+		if len(rec) != 7 {
+			log.Fatal("Line in services csv must have 7 entries")
 		}
+		var s Service
+		s.Id = rec[0]
+		s.Address.Id = rec[1]
+		var err error
+		s.Address.Lat, err = strconv.ParseFloat(rec[2], 64)
 		if err != nil {
-			log.Fatal(err)
+			log.Fatalf("Invalid float as latitude: %s", rec[2])
 		}
-		// Skip empty lines and possible header.
-		if len(rec) == 0 || i == 0 && rec[0] == "id" {
-			continue
+		s.Address.Lon, err = strconv.ParseFloat(rec[3], 64)
+		if err != nil {
+			log.Fatalf("Invalid float as longitude: %s", rec[3])
 		}
-		s = append(s, decodeService(rec, key))
+		s.Size[0], err = strconv.Atoi(rec[4])
+		if err != nil || s.Size[0] < 0 {
+			log.Fatalf("Invalid integer as service size: %s", rec[4])
+		}
+		s.TimeWindows[0].Earliest = unixTimeStamp(rec[5])
+		s.TimeWindows[0].Latest = unixTimeStamp(rec[6])
+		ss = append(ss, s)
 	}
-	return s
+	return ss
 }
 
-func decodeService(rec []string, key string) Service {
-	if len(rec) != 5 {
-		log.Fatal("Line in services csv must have 5 entries")
+func GeocodeTable(tab [][]string, addressCol int, key string) {
+	for i, row := range tab {
+		latStr := "latitude"
+		lonStr := "longitude"
+		if i > 0 {
+			lat, lon := GeocodeAddress(row[addressCol], key)
+			latStr = fmt.Sprintf("%f", lat)
+			lonStr = fmt.Sprintf("%f", lon)
+		}
+		j := addressCol + 1
+		// Insert cells latStr and lonStr at index j
+		row = append(row[0:j+2], row[j:]...)
+		row[j] = latStr
+		row[j+1] = lonStr
+		tab[i] = row
 	}
-	var s Service
-	s.Id = rec[0]
-	s.Address = GeocodeAddress(rec[1], key)
-	size, err := strconv.Atoi(rec[2])
-	if err != nil || size < 0 {
-		log.Fatalf("Invalid integer as service size: %s", rec[2])
-	}
-	s.Size[0] = size
-	s.TimeWindows[0].Earliest = unixTimeStamp(rec[3])
-	s.TimeWindows[0].Latest = unixTimeStamp(rec[4])
-	return s
 }

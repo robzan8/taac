@@ -4,9 +4,14 @@ installation:
 go get github.com/robzan8/hop
 
 usage:
-hop vehicles.csv services.csv your-graphhopper-api-key
+hop [-geocode] vehicles.csv services.csv your-graphhopper-api-key
 
-The header in the csv files is optional and the order of the columns is significant.
+When running with flag -geocode, the program adds the latitude and longitude columns to the input csvs
+(see the example files in the "data" folder).
+
+Without the flag -geocode, the program takes already geocoded inputs and produces solution.json,
+as returned by graphhopper.
+
+The header in the csv files is mandatory and the order of the columns is significant
+(not to be changed).
 The only vehicle type available is "cargo-bike", with capacity 10.
-
-The program produces solution.json, as returned by graphhopper.
