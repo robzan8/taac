@@ -7,7 +7,6 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	"net/url"
 	"os"
 	"strconv"
 	"time"
@@ -98,7 +97,7 @@ var cargoBikeType = VehicleType{
 	Profile:  "bike",
 }
 
-func ParseVehicles(tab [][]string, key string) []Vehicle {
+func ParseVehicles(tab [][]string, now time.Time) []Vehicle {
 	var vs []Vehicle
 	for i := 1; i < len(tab); i++ {
 		rec := tab[i]
@@ -121,53 +120,15 @@ func ParseVehicles(tab [][]string, key string) []Vehicle {
 		if err != nil {
 			log.Fatalf("Invalid float as longitude: %s", rec[4])
 		}
-		v.EarliestStart = unixTimeStamp(rec[5])
-		v.LatestEnd = unixTimeStamp(rec[6])
+		v.EarliestStart = unixTimeStamp(rec[5], now)
+		v.LatestEnd = unixTimeStamp(rec[6], now)
 		vs = append(vs, v)
 	}
 	return vs
 }
 
-type GeocodeHits struct {
-	Hits []struct {
-		Point struct {
-			Lat float64 `json:"lat"`
-			Lng float64 `json:"lng"`
-		} `json:"point"`
-	} `json:"hits"`
-}
-
-func GeocodeAddress(addr, key string) (lat, lon float64) {
-	base := "https://graphhopper.com/api/1/geocode"
-	q := url.QueryEscape(addr)
-	queryUrl := fmt.Sprintf("%s?q=%s&locale=it&debug=true&key=%s", base, q, key)
-	resp, err := http.Get(queryUrl)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer resp.Body.Close()
-	if resp.StatusCode != http.StatusOK {
-		log.Fatalf("Geocode query responded with status %d\n", resp.StatusCode)
-	}
-
-	var hits GeocodeHits
-	dec := json.NewDecoder(resp.Body)
-	err = dec.Decode(&hits)
-	if err != nil {
-		log.Fatal(err)
-	}
-	if len(hits.Hits) == 0 {
-		log.Fatalf("No geocode hits for address: %s\n", addr)
-	}
-	p := hits.Hits[0].Point
-	log.Printf("Address %q geocoded as %f, %f\n", addr, p.Lat, p.Lng)
-	return p.Lat, p.Lng
-}
-
-var now = time.Now()
-
 // hourMin is in the format "23:59"
-func unixTimeStamp(hourMin string) int64 {
+func unixTimeStamp(hourMin string, now time.Time) int64 {
 	var hour, min int
 	_, err := fmt.Sscanf(hourMin, "%d:%d", &hour, &min)
 	if err != nil || hour < 0 || hour > 23 || min < 0 || min > 59 {
@@ -192,7 +153,7 @@ type Service struct {
 	} `json:"time_windows"`
 }
 
-func ParseServices(tab [][]string, key string) []Service {
+func ParseServices(tab [][]string, now time.Time) []Service {
 	var ss []Service
 	for i := 1; i < len(tab); i++ {
 		rec := tab[i]
@@ -201,41 +162,23 @@ func ParseServices(tab [][]string, key string) []Service {
 		}
 		var s Service
 		s.Id = rec[0]
-		s.Address.Id = rec[1]
 		var err error
-		s.Address.Lat, err = strconv.ParseFloat(rec[2], 64)
-		if err != nil {
-			log.Fatalf("Invalid float as latitude: %s", rec[2])
-		}
-		s.Address.Lon, err = strconv.ParseFloat(rec[3], 64)
-		if err != nil {
-			log.Fatalf("Invalid float as longitude: %s", rec[3])
-		}
-		s.Size[0], err = strconv.Atoi(rec[4])
+		s.Size[0], err = strconv.Atoi(rec[1])
 		if err != nil || s.Size[0] < 0 {
-			log.Fatalf("Invalid integer as service size: %s", rec[4])
+			log.Fatalf("Invalid integer as service size: %s", rec[1])
 		}
-		s.TimeWindows[0].Earliest = unixTimeStamp(rec[5])
-		s.TimeWindows[0].Latest = unixTimeStamp(rec[6])
+		s.Address.Id = rec[2]
+		s.Address.Lat, err = strconv.ParseFloat(rec[3], 64)
+		if err != nil {
+			log.Fatalf("Invalid float as latitude: %s", rec[3])
+		}
+		s.Address.Lon, err = strconv.ParseFloat(rec[4], 64)
+		if err != nil {
+			log.Fatalf("Invalid float as longitude: %s", rec[4])
+		}
+		s.TimeWindows[0].Earliest = unixTimeStamp(rec[5], now)
+		s.TimeWindows[0].Latest = unixTimeStamp(rec[6], now)
 		ss = append(ss, s)
 	}
 	return ss
-}
-
-func GeocodeTable(tab [][]string, addressCol int, key string) {
-	for i, row := range tab {
-		latStr := "latitude"
-		lonStr := "longitude"
-		if i > 0 {
-			lat, lon := GeocodeAddress(row[addressCol], key)
-			latStr = fmt.Sprintf("%f", lat)
-			lonStr = fmt.Sprintf("%f", lon)
-		}
-		j := addressCol + 1
-		// Insert cells latStr and lonStr at index j
-		row = append(row[0:j+2], row[j:]...)
-		row[j] = latStr
-		row[j+1] = lonStr
-		tab[i] = row
-	}
 }

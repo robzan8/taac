@@ -2,24 +2,21 @@ package main
 
 import (
 	"encoding/csv"
-	"flag"
 	"log"
 	"os"
+	"time"
 
 	"github.com/robzan8/hop/routeopt"
 )
 
-var geocode bool
-
 func main() {
 	log.SetFlags(0)
+	now := time.Now()
 
-	flag.BoolVar(&geocode, "geocode", false, "Tells if input csvs need to be geocoded")
-	flag.Parse()
-	args := flag.Args()
+	args := os.Args[1:]
 	if len(args) < 3 {
 		log.Fatal(`Not enough input arguments provided.
-Usage: hop [-geocode] vehicles.csv services.csv your-graphhopper-api-key`)
+Usage: hop vehicles.csv services.csv your-graphhopper-api-key`)
 	}
 	vehiclesName := args[0]
 	servicesName := args[1]
@@ -27,19 +24,8 @@ Usage: hop [-geocode] vehicles.csv services.csv your-graphhopper-api-key`)
 
 	vehiclesTab := readTable(vehiclesName)
 	servicesTab := readTable(servicesName)
-
-	if geocode {
-		routeopt.GeocodeTable(vehiclesTab, 2, key)
-		routeopt.GeocodeTable(servicesTab, 1, key)
-		vehiclesGeocoded := vehiclesName[0:len(vehiclesName)-4] + "_geocoded.csv"
-		servicesGeocoded := servicesName[0:len(servicesName)-4] + "_geocoded.csv"
-		writeTable(vehiclesTab, vehiclesGeocoded)
-		writeTable(servicesTab, servicesGeocoded)
-		return
-	}
-
-	vehicles := routeopt.ParseVehicles(vehiclesTab, key)
-	services := routeopt.ParseServices(servicesTab, key)
+	vehicles := routeopt.ParseVehicles(vehiclesTab, now)
+	services := routeopt.ParseServices(servicesTab, now)
 	prob := routeopt.CreateProblem(vehicles, services)
 	routeopt.Solve(prob, key)
 }

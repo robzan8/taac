@@ -1,3 +1,3 @@
-id,address,size,earliest,latest
-porta-pizza-a-joe,"via di Joe, 7. 56124 Pisa",2,16:00,17:00
-porta-sushi-a-pino,"via di Pino, 17. 56124 Pisa",1,13:00,14:00
+id,size,address,earliest,latest
+porta-pizza-a-joe,2,"via di Joe, 7. 56124 Pisa",16:00,17:00
+porta-sushi-a-pino,1,"via di Pino, 17. 56124 Pisa",13:00,14:00
