@@ -11,7 +11,7 @@ import (
 
 func main() {
 	log.SetFlags(0)
-	now := time.Now()
+	planningTime := time.Now()
 
 	args := os.Args[1:]
 	if len(args) < 3 {
@@ -24,10 +24,17 @@ Usage: hop vehicles.csv services.csv your-graphhopper-api-key`)
 
 	vehiclesTab := readTable(vehiclesName)
 	servicesTab := readTable(servicesName)
-	vehicles := routeopt.ParseVehicles(vehiclesTab, now)
-	services := routeopt.ParseServices(servicesTab, now)
-	prob := routeopt.CreateProblem(vehicles, services)
-	routeopt.Solve(prob, key)
+	vehicles := routeopt.ParseVehicles(vehiclesTab, planningTime)
+	services := routeopt.ParseServices(servicesTab, planningTime)
+	problem := routeopt.CreateProblem(vehicles, services)
+	solution := routeopt.Solve(problem, key)
+	solutionTab := routeopt.SolutionToTab(solution)
+
+	w := csv.NewWriter(os.Stdout)
+	err := w.WriteAll(solutionTab)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 func readTable(fileName string) [][]string {
@@ -43,18 +50,4 @@ func readTable(fileName string) [][]string {
 		log.Fatal(err)
 	}
 	return tab
-}
-
-func writeTable(tab [][]string, fileName string) {
-	f, err := os.Create(fileName)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer f.Close()
-
-	w := csv.NewWriter(f)
-	err = w.WriteAll(tab)
-	if err != nil {
-		log.Fatal(err)
-	}
 }

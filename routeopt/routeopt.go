@@ -7,7 +7,6 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	"os"
 	"strconv"
 	"time"
 )
@@ -31,16 +30,17 @@ type Solution struct {
 		Routes []struct {
 			VehicleId  string `json:"vehicle_id"`
 			Activities []struct {
-				Type    string  `json:"type"`
-				Address Address `json:"address"`
-				Arrival int64   `json:"arr_date_time"`
-				Service Service `json:"service"`
+				Type        string  `json:"type"`
+				ServiceId   string  `json:"id"`
+				Address     Address `json:"address"`
+				ArrivalTime int64   `json:"arr_time"`
+				EndTime     int64   `json:"end_time"`
 			} `json:"activities"`
 		} `json:"routes"`
 	} `json:"solution"`
 }
 
-func Solve(prob Problem, key string) {
+func Solve(prob Problem, key string) Solution {
 	body, err := json.Marshal(&prob)
 	if err != nil {
 		log.Fatal(err)
@@ -58,15 +58,35 @@ func Solve(prob Problem, key string) {
 	if resp.StatusCode != http.StatusOK {
 		log.Fatalf("Unexpected response with code %d:\n%s", resp.StatusCode, body)
 	}
-	f, err := os.Create("./solution.json")
+	var s Solution
+	err = json.Unmarshal(body, &s)
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer f.Close()
-	_, err = f.Write(body)
-	if err != nil {
-		log.Fatal(err)
+	return s
+}
+
+func SolutionToTab(s Solution) [][]string {
+	tab := [][]string{{"vehicle id", "activity type", "service id",
+		"address", "latitude", "longitude", "time"}}
+	for _, route := range s.Solution.Routes {
+		for _, act := range route.Activities {
+			unixTime := act.ArrivalTime
+			if unixTime == 0 {
+				unixTime = act.EndTime
+			}
+			lat := fmt.Sprintf("%f", act.Address.Lat)
+			lon := fmt.Sprintf("%f", act.Address.Lon)
+			tab = append(tab, []string{route.VehicleId, act.Type, act.ServiceId,
+				act.Address.Id, lat, lon, formatHourMin(unixTime),
+			})
+		}
 	}
+	return tab
+}
+
+func formatHourMin(unixTime int64) string {
+	return time.Unix(unixTime, 0).Format("15:04")
 }
 
 type Vehicle struct {
@@ -128,13 +148,13 @@ func ParseVehicles(tab [][]string, now time.Time) []Vehicle {
 }
 
 // hourMin is in the format "23:59"
-func unixTimeStamp(hourMin string, now time.Time) int64 {
+func unixTimeStamp(hourMin string, planningTime time.Time) int64 {
 	var hour, min int
 	_, err := fmt.Sscanf(hourMin, "%d:%d", &hour, &min)
 	if err != nil || hour < 0 || hour > 23 || min < 0 || min > 59 {
 		log.Fatalf("Wrongly formatted time: %s", hourMin)
 	}
-	year, month, day := now.Date()
+	year, month, day := planningTime.Date()
 	// If we are running the script after 12:00,
 	// we are planning tomorrow's schedule.
 	if hour >= 12 {

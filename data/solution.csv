@@ -1,0 +1,5 @@
+vehicle id,activity type,service id,address,latitude,longitude,time
+bici-di-marco,start,,"via di Pratale, 52. 56123 Pisa",43.722363,10.415402,10:00
+bici-di-marco,service,porta-sushi-a-pino,"via di Pino, 17. 56124 Pisa",43.561761,10.635467,11:59
+bici-di-marco,service,porta-pizza-a-joe,"via di Joe, 7. 56124 Pisa",43.706797,10.431227,14:49
+bici-di-marco,end,,"via di Pratale, 52. 56123 Pisa",43.722363,10.415402,16:12

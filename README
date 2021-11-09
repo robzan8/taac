@@ -4,7 +4,7 @@ installation:
 go get github.com/robzan8/hop
 
 usage:
-hop vehicles.csv services.csv your-graphhopper-api-key
+hop vehicles.csv services.csv your-graphhopper-api-key >solution.csv
 
 Example csv files are in the data folder.
 
