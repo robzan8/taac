@@ -117,7 +117,7 @@ var cargoBikeType = VehicleType{
 	Profile:  "bike",
 }
 
-func ParseVehicles(tab [][]string, now time.Time) []Vehicle {
+func ParseVehicles(tab [][]string) []Vehicle {
 	var vs []Vehicle
 	for i := 1; i < len(tab); i++ {
 		rec := tab[i]
@@ -140,27 +140,21 @@ func ParseVehicles(tab [][]string, now time.Time) []Vehicle {
 		if err != nil {
 			log.Fatalf("Invalid float as longitude: %s", rec[4])
 		}
-		v.EarliestStart = unixTimeStamp(rec[5], now)
-		v.LatestEnd = unixTimeStamp(rec[6], now)
+		v.EarliestStart = unixTime(rec[5])
+		v.LatestEnd = unixTime(rec[6])
 		vs = append(vs, v)
 	}
 	return vs
 }
 
 // hourMin is in the format "23:59"
-func unixTimeStamp(hourMin string, planningTime time.Time) int64 {
-	var hour, min int
+func unixTime(hourMin string) int64 {
+	var hour, min int64
 	_, err := fmt.Sscanf(hourMin, "%d:%d", &hour, &min)
 	if err != nil || hour < 0 || hour > 23 || min < 0 || min > 59 {
 		log.Fatalf("Wrongly formatted time: %s", hourMin)
 	}
-	year, month, day := planningTime.Date()
-	// If we are running the script after 12:00,
-	// we are planning tomorrow's schedule.
-	if hour >= 12 {
-		day++
-	}
-	return time.Date(year, month, day, hour, min, 0, 0, time.Local).Unix()
+	return (hour*60 + min) * 60
 }
 
 type Service struct {
@@ -175,7 +169,7 @@ type TimeWindow struct {
 	Latest   int64 `json:"latest"`
 }
 
-func ParseServices(tab [][]string, now time.Time) []Service {
+func ParseServices(tab [][]string) []Service {
 	var ss []Service
 	for i := 1; i < len(tab); i++ {
 		rec := tab[i]
@@ -200,8 +194,8 @@ func ParseServices(tab [][]string, now time.Time) []Service {
 		}
 		if rec[5] != "" && rec[6] != "" {
 			s.TimeWindows = []TimeWindow{{
-				Earliest: unixTimeStamp(rec[5], now),
-				Latest:   unixTimeStamp(rec[6], now),
+				Earliest: unixTime(rec[5]),
+				Latest:   unixTime(rec[6]),
 			}}
 		}
 		ss = append(ss, s)

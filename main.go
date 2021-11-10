@@ -4,14 +4,12 @@ import (
 	"encoding/csv"
 	"log"
 	"os"
-	"time"
 
 	"github.com/robzan8/hop/routeopt"
 )
 
 func main() {
 	log.SetFlags(0)
-	planningTime := time.Now()
 
 	args := os.Args[1:]
 	if len(args) < 3 {
@@ -24,8 +22,8 @@ Usage: hop vehicles.csv services.csv your-graphhopper-api-key`)
 
 	vehiclesTab := readTable(vehiclesName)
 	servicesTab := readTable(servicesName)
-	vehicles := routeopt.ParseVehicles(vehiclesTab, planningTime)
-	services := routeopt.ParseServices(servicesTab, planningTime)
+	vehicles := routeopt.ParseVehicles(vehiclesTab)
+	services := routeopt.ParseServices(servicesTab)
 	problem := routeopt.CreateProblem(vehicles, services)
 	solution := routeopt.Solve(problem, key)
 	solutionTab := routeopt.SolutionToTab(solution)
