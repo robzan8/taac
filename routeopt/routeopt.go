@@ -164,13 +164,15 @@ func unixTimeStamp(hourMin string, planningTime time.Time) int64 {
 }
 
 type Service struct {
-	Id          string  `json:"id"`
-	Address     Address `json:"address"`
-	Size        [1]int  `json:"size"`
-	TimeWindows [1]struct {
-		Earliest int64 `json:"earliest"`
-		Latest   int64 `json:"latest"`
-	} `json:"time_windows"`
+	Id          string       `json:"id"`
+	Address     Address      `json:"address"`
+	Size        [1]int       `json:"size"`
+	TimeWindows []TimeWindow `json:"time_windows,omitempty"`
+}
+
+type TimeWindow struct {
+	Earliest int64 `json:"earliest"`
+	Latest   int64 `json:"latest"`
 }
 
 func ParseServices(tab [][]string, now time.Time) []Service {
@@ -196,8 +198,12 @@ func ParseServices(tab [][]string, now time.Time) []Service {
 		if err != nil {
 			log.Fatalf("Invalid float as longitude: %s", rec[4])
 		}
-		s.TimeWindows[0].Earliest = unixTimeStamp(rec[5], now)
-		s.TimeWindows[0].Latest = unixTimeStamp(rec[6], now)
+		if rec[5] != "" && rec[6] != "" {
+			s.TimeWindows = []TimeWindow{{
+				Earliest: unixTimeStamp(rec[5], now),
+				Latest:   unixTimeStamp(rec[6], now),
+			}}
+		}
 		ss = append(ss, s)
 	}
 	return ss

@@ -9,4 +9,6 @@ hop vehicles.csv services.csv your-graphhopper-api-key >solution.csv
 Example csv files are in the data folder.
 
 The header in the csv files is mandatory and the order of the columns is significant (not to be changed).
+In the services sheet, earliest and latest delivery times are optional;
+they can take an empty "" value, but the columns still need to be present in the csv.
 The only vehicle type available is "cargo-bike", with capacity 10.
