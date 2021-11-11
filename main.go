@@ -22,14 +22,23 @@ Usage: hop vehicles.csv services.csv your-graphhopper-api-key`)
 
 	vehiclesTab := readTable(vehiclesName)
 	servicesTab := readTable(servicesName)
-	vehicles := routeopt.ParseVehicles(vehiclesTab)
-	services := routeopt.ParseServices(servicesTab)
+	vehicles, err := routeopt.ParseVehicles(vehiclesTab)
+	if err != nil {
+		log.Fatal(err)
+	}
+	services, err := routeopt.ParseServices(servicesTab)
+	if err != nil {
+		log.Fatal(err)
+	}
 	problem := routeopt.CreateProblem(vehicles, services)
-	solution := routeopt.Solve(problem, key)
+	solution, err := routeopt.Solve(problem, key)
+	if err != nil {
+		log.Fatal(err)
+	}
 	solutionTab := routeopt.SolutionToTab(solution)
 
 	w := csv.NewWriter(os.Stdout)
-	err := w.WriteAll(solutionTab)
+	err = w.WriteAll(solutionTab)
 	if err != nil {
 		log.Fatal(err)
 	}

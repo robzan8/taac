@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"strconv"
 	"time"
@@ -40,30 +39,27 @@ type Solution struct {
 	} `json:"solution"`
 }
 
-func Solve(prob Problem, key string) Solution {
+func Solve(prob Problem, key string) (Solution, error) {
+	var s Solution
 	body, err := json.Marshal(&prob)
 	if err != nil {
-		log.Fatal(err)
+		return s, err
 	}
 	postUrl := "https://graphhopper.com/api/1/vrp?key=" + key
 	resp, err := http.Post(postUrl, "application/json", bytes.NewReader(body))
 	if err != nil {
-		log.Fatal(err)
+		return s, err
 	}
 	defer resp.Body.Close()
 	body, err = ioutil.ReadAll(resp.Body)
 	if err != nil {
-		log.Fatal(err)
+		return s, err
 	}
 	if resp.StatusCode != http.StatusOK {
-		log.Fatalf("Unexpected response with code %d:\n%s", resp.StatusCode, body)
+		return s, fmt.Errorf("Unexpected response with code %d:\n%s", resp.StatusCode, body)
 	}
-	var s Solution
 	err = json.Unmarshal(body, &s)
-	if err != nil {
-		log.Fatal(err)
-	}
-	return s
+	return s, err
 }
 
 func SolutionToTab(s Solution) [][]string {
@@ -117,44 +113,50 @@ var cargoBikeType = VehicleType{
 	Profile:  "bike",
 }
 
-func ParseVehicles(tab [][]string) []Vehicle {
+func ParseVehicles(tab [][]string) ([]Vehicle, error) {
 	var vs []Vehicle
 	for i := 1; i < len(tab); i++ {
 		rec := tab[i]
 		if len(rec) != 7 {
-			log.Fatal("Line in vehicles csv must have 7 entries")
+			return vs, fmt.Errorf("Line in vehicles csv must have 7 entries")
 		}
 		var v Vehicle
 		v.Id = rec[0]
 		v.Type = rec[1]
 		if !supportedVehicleTypes[v.Type] {
-			log.Fatalf("Unsupported vehicle type: %s", v.Type)
+			return vs, fmt.Errorf("Unsupported vehicle type: %s", v.Type)
 		}
 		v.StartAddress.Id = rec[2]
 		var err error
 		v.StartAddress.Lat, err = strconv.ParseFloat(rec[3], 64)
 		if err != nil {
-			log.Fatalf("Invalid float as latitude: %s", rec[3])
+			return vs, fmt.Errorf("Invalid float as latitude: %s", rec[3])
 		}
 		v.StartAddress.Lon, err = strconv.ParseFloat(rec[4], 64)
 		if err != nil {
-			log.Fatalf("Invalid float as longitude: %s", rec[4])
+			return vs, fmt.Errorf("Invalid float as longitude: %s", rec[4])
 		}
-		v.EarliestStart = unixTime(rec[5])
-		v.LatestEnd = unixTime(rec[6])
+		v.EarliestStart, err = unixTime(rec[5])
+		if err != nil {
+			return vs, err
+		}
+		v.LatestEnd, err = unixTime(rec[6])
+		if err != nil {
+			return vs, err
+		}
 		vs = append(vs, v)
 	}
-	return vs
+	return vs, nil
 }
 
 // hourMin is in the format "23:59"
-func unixTime(hourMin string) int64 {
+func unixTime(hourMin string) (int64, error) {
 	var hour, min int64
 	_, err := fmt.Sscanf(hourMin, "%d:%d", &hour, &min)
 	if err != nil || hour < 0 || hour > 23 || min < 0 || min > 59 {
-		log.Fatalf("Wrongly formatted time: %s", hourMin)
+		return 0, fmt.Errorf("Wrongly formatted time: %s", hourMin)
 	}
-	return (hour*60 + min) * 60
+	return (hour*60 + min) * 60, nil
 }
 
 type Service struct {
@@ -172,12 +174,12 @@ type TimeWindow struct {
 
 const servicesDuration = 10 * 60 // 10min
 
-func ParseServices(tab [][]string) []Service {
+func ParseServices(tab [][]string) ([]Service, error) {
 	var ss []Service
 	for i := 1; i < len(tab); i++ {
 		rec := tab[i]
 		if len(rec) != 7 {
-			log.Fatal("Line in services csv must have 7 entries")
+			return ss, fmt.Errorf("Line in services csv must have 7 entries")
 		}
 		var s Service
 		s.Duration = servicesDuration
@@ -185,24 +187,32 @@ func ParseServices(tab [][]string) []Service {
 		var err error
 		s.Size[0], err = strconv.Atoi(rec[1])
 		if err != nil || s.Size[0] < 0 {
-			log.Fatalf("Invalid integer as service size: %s", rec[1])
+			return ss, fmt.Errorf("Invalid integer as service size: %s", rec[1])
 		}
 		s.Address.Id = rec[2]
 		s.Address.Lat, err = strconv.ParseFloat(rec[3], 64)
 		if err != nil {
-			log.Fatalf("Invalid float as latitude: %s", rec[3])
+			return ss, fmt.Errorf("Invalid float as latitude: %s", rec[3])
 		}
 		s.Address.Lon, err = strconv.ParseFloat(rec[4], 64)
 		if err != nil {
-			log.Fatalf("Invalid float as longitude: %s", rec[4])
+			return ss, fmt.Errorf("Invalid float as longitude: %s", rec[4])
 		}
 		if rec[5] != "" && rec[6] != "" {
+			earliest, err := unixTime(rec[5])
+			if err != nil {
+				return ss, err
+			}
+			latest, err := unixTime(rec[6])
+			if err != nil {
+				return ss, err
+			}
 			s.TimeWindows = []TimeWindow{{
-				Earliest: unixTime(rec[5]),
-				Latest:   unixTime(rec[6]),
+				Earliest: earliest,
+				Latest:   latest,
 			}}
 		}
 		ss = append(ss, s)
 	}
-	return ss
+	return ss, nil
 }
