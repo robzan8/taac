@@ -161,6 +161,7 @@ type Service struct {
 	Id          string       `json:"id"`
 	Address     Address      `json:"address"`
 	Size        [1]int       `json:"size"`
+	Duration    int64        `json:"duration"`
 	TimeWindows []TimeWindow `json:"time_windows,omitempty"`
 }
 
@@ -168,6 +169,8 @@ type TimeWindow struct {
 	Earliest int64 `json:"earliest"`
 	Latest   int64 `json:"latest"`
 }
+
+const servicesDuration = 10 * 60 // 10min
 
 func ParseServices(tab [][]string) []Service {
 	var ss []Service
@@ -177,6 +180,7 @@ func ParseServices(tab [][]string) []Service {
 			log.Fatal("Line in services csv must have 7 entries")
 		}
 		var s Service
+		s.Duration = servicesDuration
 		s.Id = rec[0]
 		var err error
 		s.Size[0], err = strconv.Atoi(rec[1])
