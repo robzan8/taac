@@ -14,7 +14,7 @@ func main() {
 	args := os.Args[1:]
 	if len(args) < 3 {
 		log.Fatal(`Not enough input arguments provided.
-Usage: hop vehicles.csv services.csv your-graphhopper-api-key`)
+Usage: hop vehicles.csv services.csv your-graphhopper-api-key >result.csv`)
 	}
 	vehiclesName := args[0]
 	servicesName := args[1]
