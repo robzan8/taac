@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hop</title>
+</head>
+
+<body>
+Solve a route optimization problem:
+<br>
+<br>
+<form enctype="multipart/form-data" action="/solution.csv" method="post">
+	Vehicles: <input type="file" accept=".csv" name="vehicles">
+	Services: <input type="file" accept=".csv" name="services">
+	<br>
+	<br>
+	GraphHopper API key: <input type="text" name="key">
+	<input type="submit" value="Go!">
+</form>
+<br>
+<br>
+or geocode a vehicles/services file (may take some time for many entries):
+<br>
+<br>
+<form enctype="multipart/form-data" action="/geocoded.csv" method="post">
+	<input type="file" accept=".csv" name="table">
+	Google Geocoding API key: <input type="text" name="key">
+	<input type="submit" value="Go!">
+</form>
+</body>
+
+</html>

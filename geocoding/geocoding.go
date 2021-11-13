@@ -18,12 +18,13 @@ func GeocodeTable(tab [][]string, key string, logger Logger) error {
 		latStr := "latitude"
 		lonStr := "longitude"
 		if i > 0 {
-			lat, lon, err := GeocodeAddress(row[addressCol], key)
+			addr := row[addressCol]
+			lat, lon, err := GeocodeAddress(addr, key)
 			if err != nil {
 				return err
 			}
 			if logger != nil {
-				logger.Printf("Address %q geocoded as %f, %f\n", row[addressCol], lat, lon)
+				logger.Printf("Address %q geocoded as %f, %f\n", addr, lat, lon)
 			}
 			latStr = fmt.Sprintf("%f", lat)
 			lonStr = fmt.Sprintf("%f", lon)

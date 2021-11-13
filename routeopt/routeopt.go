@@ -62,6 +62,23 @@ func Solve(prob Problem, key string) (Solution, error) {
 	return s, err
 }
 
+func SolveTables(vehiclesTab, servicesTab [][]string, key string) ([][]string, error) {
+	vehicles, err := ParseVehicles(vehiclesTab)
+	if err != nil {
+		return nil, err
+	}
+	services, err := ParseServices(servicesTab)
+	if err != nil {
+		return nil, err
+	}
+	problem := CreateProblem(vehicles, services)
+	solution, err := Solve(problem, key)
+	if err != nil {
+		return nil, err
+	}
+	return SolutionToTab(solution), nil
+}
+
 func SolutionToTab(s Solution) [][]string {
 	tab := [][]string{{"vehicle id", "activity type", "service id",
 		"address", "latitude", "longitude", "time"}}

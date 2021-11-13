@@ -22,20 +22,10 @@ Usage: hop vehicles.csv services.csv your-graphhopper-api-key >result.csv`)
 
 	vehiclesTab := readTable(vehiclesName)
 	servicesTab := readTable(servicesName)
-	vehicles, err := routeopt.ParseVehicles(vehiclesTab)
+	solutionTab, err := routeopt.SolveTables(vehiclesTab, servicesTab, key)
 	if err != nil {
 		log.Fatal(err)
 	}
-	services, err := routeopt.ParseServices(servicesTab)
-	if err != nil {
-		log.Fatal(err)
-	}
-	problem := routeopt.CreateProblem(vehicles, services)
-	solution, err := routeopt.Solve(problem, key)
-	if err != nil {
-		log.Fatal(err)
-	}
-	solutionTab := routeopt.SolutionToTab(solution)
 
 	w := csv.NewWriter(os.Stdout)
 	err = w.WriteAll(solutionTab)
