@@ -9,4 +9,4 @@ hop vehicles.csv shipments.csv your-graphhopper-api-key >solution.csv
 Example csv files are in the data folder.
 
 The header in the csv files is mandatory and the order of the columns is significant (not to be changed).
-The only vehicle type available is "cargo-bike", with capacity 10.
+The only vehicle type available is "cargo-bike", with fixed capacity 1000.

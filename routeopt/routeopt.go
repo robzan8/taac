@@ -138,7 +138,7 @@ var supportedVehicleTypes = map[string]bool{"cargo-bike": true}
 
 var cargoBikeType = VehicleType{
 	Id:       "cargo-bike",
-	Capacity: [1]int{10},
+	Capacity: [1]int{1000},
 	Profile:  "bike",
 }
 

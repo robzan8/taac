@@ -1,89 +1,80 @@
 id,size,pickup address,lat,lon,delivery address,lat,lon
-UL.92,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,via Marcona 72 20129 Milano,45.464016,9.221147
-UL.93,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Fratelli zoia 43 20134 Milano,45.473846,9.109363
-UL.94,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,via Parenzo 8a 20151 Milano,45.441446,9.140468
-UL.95,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Piazza Axum 5 20148 Milano,45.475367,9.123023
-UL.96,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Angeloni 20 20161 Milano,45.526561,9.175753
-UL.97,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Viale Abruzzi 4 20131 Milano,45.474062,9.217449
-UL.98,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Imbonati 24 20159 Milano,45.502053,9.182626
-UL.99,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,via Saint Boin 38 20147 Milano,45.457836,9.121940
-UL.100,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Palmanova 65 20132 Milano,45.496683,9.235600
-UL.101,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via De Ruggiero 8 20142 Milano,45.418809,9.174549
-UL.102,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,via Teodosio 74 20131 Milano,45.488148,9.230090
-UL.103,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Nikolajewka 10 20152 Milano,45.458414,9.105689
-UL.104,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Piazza R. Scolari 3 20151 Milano,45.490406,9.100757
-UL.105,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Scheiwiller 2 20139 Milano,45.444066,9.222250
-UL.106,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Piazza Falterona 3 20148 Milano,45.473655,9.140177
-UL.107,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Negroli 55A 20133 Milano,45.467664,9.232154
-UL.108,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Morgantini 25 20148 Milano,45.468939,9.133606
-UL.109,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Lessona 55 20157 Milano,45.519211,9.135121
-UL.110,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,via Chiesa Rossa 95 20142 Milano,45.427113,9.170373
-UL.111,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Piazza Frattini 20146 Milano,45.451689,9.143116
-UL.112,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via M. Pieri 2 20127 Milano,45.507515,9.244265
-UL.113,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Viale Lunigiana 8 20125 Milano,45.491531,9.205770
-UL.114,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Alcuino 18 20149 Milano,45.483544,9.156403
-UL.115,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Padova 153 20127 Milano,45.499901,9.234731
-UL.116,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Volvino 25 20141 Milano,45.435574,9.183778
-UL.117,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Forze Armate 328 20152 Milano,45.460238,9.097812
-UL.118,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Val Maira 14 20162 Milano,45.508965,9.196331
-UL.119,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Piazza Tito imperatore 55 20137 Milano,45.454051,9.217791
-UL.120,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Marochetti 9 20139 Milano,45.439404,9.226448
-UL.121,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Vetta d'Italia 18 20144 Milano,45.460633,9.157468
-UL.122,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Abbazzia 4 20125 Milano,45.500702,9.198900
-UL.123,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Viale Famagosta 36 20142 Milano,45.436967,9.161190
-UL.124,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via del Liri 1 20138 Milano,45.445101,9.248501
-UL.125,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Bagarotti 38 20152 Milano,45.456421,9.091451
-UL.126,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Piazza Prealpi 3 20155 Milano,45.494673,9.153747
-UL.127,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Gian Rinaldo Carli 14 20162 Milano,45.521004,9.171454
-UL.128,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Casoretto 1 20131 Milano,45.488944,9.225087
-UL.129,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Ronchi 31 20134 Milano,45.488765,9.236875
-UL.130,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Livigno 6b 20158 Milano,45.499593,9.178961
-UL.131,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Viale Suzzani 155 20162 Milano,45.516303,9.203130
-UL.132,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Pellini 1 20125 Milano,45.496016,9.203616
-UL.133,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Petrocchi 21 20127 Milano,45.502921,9.225299
-UL.134,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Piazza Anita Garibaldi 8 20153 Milano,45.463349,9.087204
-UL.135,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Viale Suzzani 239 20162 Milano,45.522265,9.206441
-UL.136,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via E. Ponti 31 20143 Milano,45.442126,9.155432
-UL.137,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,via Marco D'Agrate 1 20139 Milano,45.436768,9.216073
-UL.138,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Illirico 11 20133 Milano,45.470608,9.232223
-UL.139,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Piazza De Angeli 1 20146 Milano,45.465879,9.150407
-UL.140,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Inganni 40 20147 Milano,45.451312,9.125833
-UL.141,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Chopin 111 20141 Milano,45.425245,9.204588
-UL.142,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Viale Monza 226 20128 Milano,45.513089,9.225008
-UL.143,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via F. Denti 2 20129 Milano,45.475548,9.224329
-UL.144,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Mecenate 8 20138 Milano,45.456243,9.242845
-UL.145,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Palanzone 33 20162 Milano,45.518412,9.192224
-UL.146,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Piazza Bonomelli 4 20139 Milano,45.441400,9.213725
-UL.147,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Grigna 9 20155 Milano,45.493064,9.156584
-UL.148,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Forze Armate 44 20147 Milano,45.463724,9.132501
-UL.149,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Piazza Cuoco 4 20137 Milano,45.450888,9.224689
-UL.150,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Ampere 87 20131 Milano,45.485882,9.226233
-UL.151,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Murat 5 20159 Milano,45.497037,9.191637
-UL.152,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Washington 74 20146 Milano,45.459538,9.154478
-UL.153,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Porpora 169 20131 Milano,45.486254,9.233302
-UL.154,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Piazza G. Monti 9 20153 Milano,45.476250,9.088602
-UL.155,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Iglesias 48 20128 Milano,45.505382,9.233593
-UL.156,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Lomellina 1 20133 Milano,45.462852,9.229975
-UL.157,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,via Pizzolpasso 5 20138 Milano,45.435704,9.240679
-UL.158,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Piazza Velasquez 7 20148 Milano,45.467822,9.140717
-UL.159,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via B. Sassi 24 20133 Milano,45.464436,9.227920
-UL.160,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Zanzottera 12 20153 Milano,45.493059,9.073264
-UL.161,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via De Pretis 1 20142 Milano,45.431872,9.153677
-UL.162,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via S. Bernardo 42 20139 Milano,45.415869,9.240540
-UL.163,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via A. Visconti 22a 20151 Milano,45.504135,9.100501
-UL.164,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Magliocco 3 20141 Milano,45.440246,9.183772
-UL.165,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,via Gran San Bernardo 6 20155 Milano,45.488464,9.167776
-UL.166,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via T. Vignoli 42 20146 Milano,45.452580,9.148140
-UL.167,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Chiarelli 10 20151 Milano,45.490885,9.121740
-UL.168,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Viale Ungheria 4 20138 Milano,45.445475,9.242987
-UL.169,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Pascarella 22 20157 Milano,45.517216,9.143310
-UL.170,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via M. Saponaro 2c 20142 Milano,45.411352,9.172683
-UL.171,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Foppa 5 20144 Milano,45.458514,9.164422
-UL.172,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Piazza Zavattari 4 20149 Milano,45.475835,9.143726
-UL.173,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via S. Paolino 18 20142 Milano,45.430925,9.164156
-UL.174,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via delle Betulle 36c 20152 Milano,45.454084,9.079191
-UL.175,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via P. Lombardo 19 20135 Milano,45.453924,9.207662
-UL.176,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Cignoli 1 20151 Milano,45.495537,9.133954
-UL.177,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Stilicone 20 20154 Milano,45.490822,9.168869
-UL.188,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Galleria Castelli Ferrieri 5 20145 Milano,45.478449,9.159658
-UL.189,1,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,via Grosotto 7 20149 Milano,45.490870,9.146747
+UL.92,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,via Marcona 72 20129 Milano,45.464016,9.221147
+UL.93,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Fratelli zoia 43 20134 Milano,45.473846,9.109363
+UL.94,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,via Parenzo 8a 20151 Milano,45.441446,9.140468
+UL.95,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Piazza Axum 5 20148 Milano,45.475367,9.123023
+UL.96,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Angeloni 20 20161 Milano,45.526561,9.175753
+UL.97,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Viale Abruzzi 4 20131 Milano,45.474062,9.217449
+UL.98,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Imbonati 24 20159 Milano,45.502053,9.182626
+UL.99,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,via Saint Boin 38 20147 Milano,45.457836,9.121940
+UL.100,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Palmanova 65 20132 Milano,45.496683,9.235600
+UL.101,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via De Ruggiero 8 20142 Milano,45.418809,9.174549
+UL.102,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,via Teodosio 74 20131 Milano,45.488148,9.230090
+UL.103,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Nikolajewka 10 20152 Milano,45.458414,9.105689
+UL.104,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Piazza R. Scolari 3 20151 Milano,45.490406,9.100757
+UL.105,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Scheiwiller 2 20139 Milano,45.444066,9.222250
+UL.106,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Piazza Falterona 3 20148 Milano,45.473655,9.140177
+UL.107,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Negroli 55A 20133 Milano,45.467664,9.232154
+UL.108,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Morgantini 25 20148 Milano,45.468939,9.133606
+UL.109,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Lessona 55 20157 Milano,45.519211,9.135121
+UL.110,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,via Chiesa Rossa 95 20142 Milano,45.427113,9.170373
+UL.111,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Piazza Frattini 20146 Milano,45.451689,9.143116
+UL.112,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via M. Pieri 2 20127 Milano,45.507515,9.244265
+UL.113,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Viale Lunigiana 8 20125 Milano,45.491531,9.205770
+UL.114,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Alcuino 18 20149 Milano,45.483544,9.156403
+UL.115,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Padova 153 20127 Milano,45.499901,9.234731
+UL.116,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Volvino 25 20141 Milano,45.435574,9.183778
+UL.117,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Forze Armate 328 20152 Milano,45.460238,9.097812
+UL.118,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Val Maira 14 20162 Milano,45.508965,9.196331
+UL.119,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Piazza Tito imperatore 55 20137 Milano,45.454051,9.217791
+UL.120,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Marochetti 9 20139 Milano,45.439404,9.226448
+UL.121,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Vetta d'Italia 18 20144 Milano,45.460633,9.157468
+UL.122,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Abbazzia 4 20125 Milano,45.500702,9.198900
+UL.123,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Viale Famagosta 36 20142 Milano,45.436967,9.161190
+UL.124,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via del Liri 1 20138 Milano,45.445101,9.248501
+UL.125,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Bagarotti 38 20152 Milano,45.456421,9.091451
+UL.126,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Piazza Prealpi 3 20155 Milano,45.494673,9.153747
+UL.127,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Gian Rinaldo Carli 14 20162 Milano,45.521004,9.171454
+UL.128,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Casoretto 1 20131 Milano,45.488944,9.225087
+UL.129,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Ronchi 31 20134 Milano,45.488765,9.236875
+UL.130,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Livigno 6b 20158 Milano,45.499593,9.178961
+UL.131,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Viale Suzzani 155 20162 Milano,45.516303,9.203130
+UL.132,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Pellini 1 20125 Milano,45.496016,9.203616
+UL.133,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Petrocchi 21 20127 Milano,45.502921,9.225299
+UL.134,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Piazza Anita Garibaldi 8 20153 Milano,45.463349,9.087204
+UL.135,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Viale Suzzani 239 20162 Milano,45.522265,9.206441
+UL.136,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via E. Ponti 31 20143 Milano,45.442126,9.155432
+UL.137,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,via Marco D'Agrate 1 20139 Milano,45.436768,9.216073
+UL.138,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Illirico 11 20133 Milano,45.470608,9.232223
+UL.139,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Piazza De Angeli 1 20146 Milano,45.465879,9.150407
+UL.140,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Inganni 40 20147 Milano,45.451312,9.125833
+UL.141,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Chopin 111 20141 Milano,45.425245,9.204588
+UL.142,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Viale Monza 226 20128 Milano,45.513089,9.225008
+UL.143,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via F. Denti 2 20129 Milano,45.475548,9.224329
+UL.144,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Mecenate 8 20138 Milano,45.456243,9.242845
+UL.145,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Palanzone 33 20162 Milano,45.518412,9.192224
+UL.146,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Piazza Bonomelli 4 20139 Milano,45.441400,9.213725
+UL.147,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Grigna 9 20155 Milano,45.493064,9.156584
+UL.148,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Forze Armate 44 20147 Milano,45.463724,9.132501
+UL.149,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Piazza Cuoco 4 20137 Milano,45.450888,9.224689
+UL.150,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Ampere 87 20131 Milano,45.485882,9.226233
+UL.151,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Murat 5 20159 Milano,45.497037,9.191637
+UL.152,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Washington 74 20146 Milano,45.459538,9.154478
+UL.153,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Porpora 169 20131 Milano,45.486254,9.233302
+UL.154,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Piazza G. Monti 9 20153 Milano,45.476250,9.088602
+UL.155,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Iglesias 48 20128 Milano,45.505382,9.233593
+UL.156,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Lomellina 1 20133 Milano,45.462852,9.229975
+UL.157,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,via Pizzolpasso 5 20138 Milano,45.435704,9.240679
+UL.158,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Piazza Velasquez 7 20148 Milano,45.467822,9.140717
+UL.159,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via B. Sassi 24 20133 Milano,45.464436,9.227920
+UL.160,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Zanzottera 12 20153 Milano,45.493059,9.073264
+UL.161,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via De Pretis 1 20142 Milano,45.431872,9.153677
+UL.162,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via S. Bernardo 42 20139 Milano,45.415869,9.240540
+UL.163,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via A. Visconti 22a 20151 Milano,45.504135,9.100501
+UL.164,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Magliocco 3 20141 Milano,45.440246,9.183772
+UL.165,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,via Gran San Bernardo 6 20155 Milano,45.488464,9.167776
+UL.166,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via T. Vignoli 42 20146 Milano,45.452580,9.148140
+UL.167,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Chiarelli 10 20151 Milano,45.490885,9.121740
+UL.168,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Viale Ungheria 4 20138 Milano,45.445475,9.242987
+UL.169,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via Pascarella 22 20157 Milano,45.517216,9.143310
+UL.170,33,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,Via M. Saponaro 2c 20142 Milano,45.411352,9.172683
