@@ -7,7 +7,6 @@ import (
 	"io/ioutil"
 	"net/http"
 	"strconv"
-	"time"
 )
 
 type Problem struct {
@@ -99,7 +98,14 @@ func SolutionToTab(s Solution) [][]string {
 }
 
 func formatHourMin(unixTime int64) string {
-	return time.Unix(unixTime, 0).Format("15:04")
+	minutes := unixTime / 60
+	min := minutes % 60
+	hour := (minutes / 60) % 24
+	format := "%d:%d"
+	if min < 10 {
+		format = "%d:0%d"
+	}
+	return fmt.Sprintf(format, hour, min)
 }
 
 type Vehicle struct {
