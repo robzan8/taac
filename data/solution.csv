@@ -1,126 +1,124 @@
 vehicle id,activity type,shipment id,address,lat,lon,time
-vehicle2,start,,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:00
-vehicle2,pickupShipment,UL.108,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:00
-vehicle2,pickupShipment,UL.106,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:10
-vehicle2,pickupShipment,UL.121,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:10
-vehicle2,pickupShipment,UL.147,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:10
-vehicle2,pickupShipment,UL.103,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:10
-vehicle2,pickupShipment,UL.148,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:10
-vehicle2,pickupShipment,UL.158,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:10
-vehicle2,pickupShipment,UL.99,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:10
-vehicle2,pickupShipment,UL.152,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:10
-vehicle2,pickupShipment,UL.114,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:10
-vehicle2,pickupShipment,UL.139,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:10
-vehicle2,pickupShipment,UL.165,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:10
-vehicle2,pickupShipment,UL.126,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:10
-vehicle2,deliverShipment,UL.126,Piazza Prealpi 3 20155 Milano,45.494673,9.153747,9:20
-vehicle2,deliverShipment,UL.106,Piazza Falterona 3 20148 Milano,45.473655,9.140177,9:40
-vehicle2,deliverShipment,UL.158,Piazza Velasquez 7 20148 Milano,45.467822,9.140717,9:54
-vehicle2,deliverShipment,UL.108,Via Morgantini 25 20148 Milano,45.468939,9.133606,10:07
-vehicle2,deliverShipment,UL.103,Via Nikolajewka 10 20152 Milano,45.458414,9.105689,10:28
-vehicle2,deliverShipment,UL.99,via Saint Boin 38 20147 Milano,45.457836,9.121940,10:45
-vehicle2,deliverShipment,UL.148,Via Forze Armate 44 20147 Milano,45.463724,9.132501,11:00
-vehicle2,deliverShipment,UL.139,Piazza De Angeli 1 20146 Milano,45.465879,9.150407,11:17
-vehicle2,deliverShipment,UL.121,Via Vetta d'Italia 18 20144 Milano,45.460633,9.157468,11:31
-vehicle2,deliverShipment,UL.152,Via Washington 74 20146 Milano,45.459538,9.154478,11:43
-vehicle2,deliverShipment,UL.114,Via Alcuino 18 20149 Milano,45.483544,9.156403,12:07
-vehicle2,deliverShipment,UL.165,via Gran San Bernardo 6 20155 Milano,45.488464,9.167776,12:23
-vehicle2,deliverShipment,UL.147,Via Grigna 9 20155 Milano,45.493064,9.156584,12:39
-vehicle2,end,,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,12:58
-vehicle3,start,,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:00
-vehicle3,pickupShipment,UL.142,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:00
-vehicle3,pickupShipment,UL.113,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:10
-vehicle3,pickupShipment,UL.151,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:10
-vehicle3,pickupShipment,UL.133,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:10
-vehicle3,pickupShipment,UL.122,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:10
-vehicle3,pickupShipment,UL.100,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:10
-vehicle3,pickupShipment,UL.129,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:10
-vehicle3,pickupShipment,UL.102,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:10
-vehicle3,pickupShipment,UL.115,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:10
-vehicle3,pickupShipment,UL.131,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:10
-vehicle3,pickupShipment,UL.118,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:10
-vehicle3,pickupShipment,UL.155,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:10
-vehicle3,pickupShipment,UL.132,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:10
-vehicle3,pickupShipment,UL.112,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:10
-vehicle3,deliverShipment,UL.132,Via Pellini 1 20125 Milano,45.496016,9.203616,9:23
-vehicle3,deliverShipment,UL.113,Viale Lunigiana 8 20125 Milano,45.491531,9.205770,9:36
-vehicle3,deliverShipment,UL.102,via Teodosio 74 20131 Milano,45.488148,9.230090,9:55
-vehicle3,deliverShipment,UL.129,Via Ronchi 31 20134 Milano,45.488765,9.236875,10:09
-vehicle3,deliverShipment,UL.100,Via Palmanova 65 20132 Milano,45.496683,9.235600,10:22
-vehicle3,deliverShipment,UL.115,Via Padova 153 20127 Milano,45.499901,9.234731,10:35
-vehicle3,deliverShipment,UL.112,Via M. Pieri 2 20127 Milano,45.507515,9.244265,10:49
-vehicle3,deliverShipment,UL.155,Via Iglesias 48 20128 Milano,45.505382,9.233593,11:03
-vehicle3,deliverShipment,UL.133,Via Petrocchi 21 20127 Milano,45.502921,9.225299,11:17
-vehicle3,deliverShipment,UL.142,Viale Monza 226 20128 Milano,45.513089,9.225008,11:33
-vehicle3,deliverShipment,UL.131,Viale Suzzani 155 20162 Milano,45.516303,9.203130,11:53
-vehicle3,deliverShipment,UL.118,Via Val Maira 14 20162 Milano,45.508965,9.196331,12:07
-vehicle3,deliverShipment,UL.122,Via Abbazzia 4 20125 Milano,45.500702,9.198900,12:23
-vehicle3,deliverShipment,UL.151,Via Murat 5 20159 Milano,45.497037,9.191637,12:38
-vehicle3,end,,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,12:55
-vehicle1,start,,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:00
-vehicle1,pickupShipment,UL.97,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:00
-vehicle1,pickupShipment,UL.119,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:10
-vehicle1,pickupShipment,UL.150,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:10
-vehicle1,pickupShipment,UL.107,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:10
-vehicle1,pickupShipment,UL.92,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:10
-vehicle1,pickupShipment,UL.156,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:10
-vehicle1,pickupShipment,UL.149,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:10
-vehicle1,pickupShipment,UL.143,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:10
-vehicle1,pickupShipment,UL.159,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:10
-vehicle1,pickupShipment,UL.130,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:10
-vehicle1,pickupShipment,UL.153,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:10
-vehicle1,pickupShipment,UL.138,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:10
-vehicle1,pickupShipment,UL.98,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,9:10
-vehicle1,deliverShipment,UL.130,Via Livigno 6b 20158 Milano,45.499593,9.178961,9:16
-vehicle1,deliverShipment,UL.98,Via Imbonati 24 20159 Milano,45.502053,9.182626,9:31
-vehicle1,deliverShipment,UL.150,Via Ampere 87 20131 Milano,45.485882,9.226233,9:59
-vehicle1,deliverShipment,UL.153,Via Porpora 169 20131 Milano,45.486254,9.233302,10:12
-vehicle1,deliverShipment,UL.107,Via Negroli 55A 20133 Milano,45.467664,9.232154,10:31
-vehicle1,deliverShipment,UL.138,Via Illirico 11 20133 Milano,45.470608,9.232223,10:42
-vehicle1,deliverShipment,UL.159,Via B. Sassi 24 20133 Milano,45.464436,9.227920,10:58
-vehicle1,deliverShipment,UL.156,Via Lomellina 1 20133 Milano,45.462852,9.229975,11:09
-vehicle1,deliverShipment,UL.149,Piazza Cuoco 4 20137 Milano,45.450888,9.224689,11:26
-vehicle1,deliverShipment,UL.119,Piazza Tito imperatore 55 20137 Milano,45.454051,9.217791,11:40
-vehicle1,deliverShipment,UL.92,via Marcona 72 20129 Milano,45.464016,9.221147,11:55
-vehicle1,deliverShipment,UL.143,Via F. Denti 2 20129 Milano,45.475548,9.224329,12:11
-vehicle1,deliverShipment,UL.97,Viale Abruzzi 4 20131 Milano,45.474062,9.217449,12:24
-vehicle1,end,,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,12:55
-,unassigned,UL.170
-,unassigned,UL.110
-,unassigned,UL.116
-,unassigned,UL.160
-,unassigned,UL.162
-,unassigned,UL.163
-,unassigned,UL.141
-,unassigned,UL.101
-,unassigned,UL.157
-,unassigned,UL.135
-,unassigned,UL.137
-,unassigned,UL.120
-,unassigned,UL.168
-,unassigned,UL.124
-,unassigned,UL.146
+vehicle2,start,,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:00
+vehicle2,pickupShipment,UL.146,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:00
+vehicle2,pickupShipment,UL.129,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:10
+vehicle2,pickupShipment,UL.124,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:10
+vehicle2,pickupShipment,UL.144,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:10
+vehicle2,pickupShipment,UL.143,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:10
+vehicle2,pickupShipment,UL.100,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:10
+vehicle2,pickupShipment,UL.120,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:10
+vehicle2,pickupShipment,UL.137,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:10
+vehicle2,pickupShipment,UL.168,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:10
+vehicle2,pickupShipment,UL.157,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:10
+vehicle2,pickupShipment,UL.105,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:10
+vehicle2,pickupShipment,UL.149,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:10
+vehicle2,deliverShipment,UL.129,Via Ronchi 31 20134 Milano,45.488765,9.236875,9:23
+vehicle2,deliverShipment,UL.143,Via F. Denti 2 20129 Milano,45.475548,9.224329,9:43
+vehicle2,deliverShipment,UL.149,Piazza Cuoco 4 20137 Milano,45.450888,9.224689,10:05
+vehicle2,deliverShipment,UL.105,Via Scheiwiller 2 20139 Milano,45.444066,9.222250,10:19
+vehicle2,deliverShipment,UL.146,Piazza Bonomelli 4 20139 Milano,45.441400,9.213725,10:32
+vehicle2,deliverShipment,UL.137,via Marco D'Agrate 1 20139 Milano,45.436768,9.216073,10:44
+vehicle2,deliverShipment,UL.120,Via Marochetti 9 20139 Milano,45.439404,9.226448,11:01
+vehicle2,deliverShipment,UL.157,via Pizzolpasso 5 20138 Milano,45.435704,9.240679,11:22
+vehicle2,deliverShipment,UL.124,Via del Liri 1 20138 Milano,45.445101,9.248501,11:39
+vehicle2,deliverShipment,UL.168,Viale Ungheria 4 20138 Milano,45.445475,9.242987,11:51
+vehicle2,deliverShipment,UL.144,Via Mecenate 8 20138 Milano,45.456243,9.242845,12:06
+vehicle2,deliverShipment,UL.100,Via Palmanova 65 20132 Milano,45.496683,9.235600,12:37
+vehicle2,end,,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,12:59
+vehicle3,start,,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:00
+vehicle3,pickupShipment,UL.121,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:00
+vehicle3,pickupShipment,UL.147,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:10
+vehicle3,pickupShipment,UL.131,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:10
+vehicle3,pickupShipment,UL.152,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:10
+vehicle3,pickupShipment,UL.151,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:10
+vehicle3,pickupShipment,UL.114,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:10
+vehicle3,pickupShipment,UL.158,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:10
+vehicle3,pickupShipment,UL.108,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:10
+vehicle3,pickupShipment,UL.122,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:10
+vehicle3,pickupShipment,UL.106,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:10
+vehicle3,pickupShipment,UL.118,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:10
+vehicle3,deliverShipment,UL.121,Via Vetta d'Italia 18 20144 Milano,45.460633,9.157468,9:52
+vehicle3,deliverShipment,UL.152,Via Washington 74 20146 Milano,45.459538,9.154478,10:03
+vehicle3,deliverShipment,UL.158,Piazza Velasquez 7 20148 Milano,45.467822,9.140717,10:21
+vehicle3,deliverShipment,UL.108,Via Morgantini 25 20148 Milano,45.468939,9.133606,10:34
+vehicle3,deliverShipment,UL.106,Piazza Falterona 3 20148 Milano,45.473655,9.140177,10:47
+vehicle3,deliverShipment,UL.114,Via Alcuino 18 20149 Milano,45.483544,9.156403,11:06
+vehicle3,deliverShipment,UL.147,Via Grigna 9 20155 Milano,45.493064,9.156584,11:22
+vehicle3,deliverShipment,UL.151,Via Murat 5 20159 Milano,45.497037,9.191637,11:44
+vehicle3,deliverShipment,UL.122,Via Abbazzia 4 20125 Milano,45.500702,9.198900,11:58
+vehicle3,deliverShipment,UL.118,Via Val Maira 14 20162 Milano,45.508965,9.196331,12:13
+vehicle3,deliverShipment,UL.131,Viale Suzzani 155 20162 Milano,45.516303,9.203130,12:28
+vehicle3,end,,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,12:54
+vehicle1,start,,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:00
+vehicle1,pickupShipment,UL.150,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:00
+vehicle1,pickupShipment,UL.128,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:10
+vehicle1,pickupShipment,UL.142,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:10
+vehicle1,pickupShipment,UL.133,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:10
+vehicle1,pickupShipment,UL.97,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:10
+vehicle1,pickupShipment,UL.115,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:10
+vehicle1,pickupShipment,UL.102,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:10
+vehicle1,pickupShipment,UL.153,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:10
+vehicle1,pickupShipment,UL.156,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:10
+vehicle1,pickupShipment,UL.155,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:10
+vehicle1,pickupShipment,UL.92,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:10
+vehicle1,pickupShipment,UL.107,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:10
+vehicle1,pickupShipment,UL.138,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:10
+vehicle1,pickupShipment,UL.112,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:10
+vehicle1,pickupShipment,UL.159,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,9:10
+vehicle1,deliverShipment,UL.112,Via M. Pieri 2 20127 Milano,45.507515,9.244265,9:15
+vehicle1,deliverShipment,UL.155,Via Iglesias 48 20128 Milano,45.505382,9.233593,9:29
+vehicle1,deliverShipment,UL.115,Via Padova 153 20127 Milano,45.499901,9.234731,9:43
+vehicle1,deliverShipment,UL.150,Via Ampere 87 20131 Milano,45.485882,9.226233,10:00
+vehicle1,deliverShipment,UL.97,Viale Abruzzi 4 20131 Milano,45.474062,9.217449,10:17
+vehicle1,deliverShipment,UL.92,via Marcona 72 20129 Milano,45.464016,9.221147,10:33
+vehicle1,deliverShipment,UL.159,Via B. Sassi 24 20133 Milano,45.464436,9.227920,10:46
+vehicle1,deliverShipment,UL.156,Via Lomellina 1 20133 Milano,45.462852,9.229975,10:58
+vehicle1,deliverShipment,UL.107,Via Negroli 55A 20133 Milano,45.467664,9.232154,11:10
+vehicle1,deliverShipment,UL.138,Via Illirico 11 20133 Milano,45.470608,9.232223,11:21
+vehicle1,deliverShipment,UL.153,Via Porpora 169 20131 Milano,45.486254,9.233302,11:40
+vehicle1,deliverShipment,UL.102,via Teodosio 74 20131 Milano,45.488148,9.230090,11:52
+vehicle1,deliverShipment,UL.128,Via Casoretto 1 20131 Milano,45.488944,9.225087,12:06
+vehicle1,deliverShipment,UL.133,Via Petrocchi 21 20127 Milano,45.502921,9.225299,12:23
+vehicle1,deliverShipment,UL.142,Viale Monza 226 20128 Milano,45.513089,9.225008,12:39
+vehicle1,end,,"Via Adriano, 109, 20128 Milano",45.518196,9.242620,12:56
 ,unassigned,UL.154
+,unassigned,UL.117
 ,unassigned,UL.109
+,unassigned,UL.93
+,unassigned,UL.160
+,unassigned,UL.163
+,unassigned,UL.125
+,unassigned,UL.169
+,unassigned,UL.127
+,unassigned,UL.134
+,unassigned,UL.103
+,unassigned,UL.104
 ,unassigned,UL.94
 ,unassigned,UL.96
 ,unassigned,UL.161
-,unassigned,UL.164
+,unassigned,UL.170
+,unassigned,UL.101
+,unassigned,UL.110
 ,unassigned,UL.123
-,unassigned,UL.145
-,unassigned,UL.169
-,unassigned,UL.104
-,unassigned,UL.127
+,unassigned,UL.116
+,unassigned,UL.162
+,unassigned,UL.164
+,unassigned,UL.141
 ,unassigned,UL.111
-,unassigned,UL.134
-,unassigned,UL.136
-,unassigned,UL.117
-,unassigned,UL.93
 ,unassigned,UL.95
-,unassigned,UL.140
+,unassigned,UL.98
+,unassigned,UL.99
 ,unassigned,UL.166
 ,unassigned,UL.167
-,unassigned,UL.125
-,unassigned,UL.144
-,unassigned,UL.105
-,unassigned,UL.128
+,unassigned,UL.136
+,unassigned,UL.140
+,unassigned,UL.119
+,unassigned,UL.113
+,unassigned,UL.165
+,unassigned,UL.126
+,unassigned,UL.130
+,unassigned,UL.132
+,unassigned,UL.135
+,unassigned,UL.139
+,unassigned,UL.145
+,unassigned,UL.148
