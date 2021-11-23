@@ -1,5 +1,73 @@
-vehicle id,activity type,service id,address,latitude,longitude,time
-bici-di-marco,start,,"via di Pratale, 52. 56123 Pisa",43.722363,10.415402,10:00
-bici-di-marco,service,porta-sushi-a-pino,"via di Pino, 17. 56124 Pisa",43.561761,10.635467,11:59
-bici-di-marco,service,porta-pizza-a-joe,"via di Joe, 7. 56124 Pisa",43.706797,10.431227,14:49
-bici-di-marco,end,,"via di Pratale, 52. 56123 Pisa",43.722363,10.415402,16:12
+vehicle id,activity type,shipment id,address,latitude,longitude,time
+vehicle2,start,,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,10:00
+vehicle2,pickupShipment,UL.151,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,10:00
+vehicle2,pickupShipment,UL.127,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,10:10
+vehicle2,pickupShipment,UL.145,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,10:10
+vehicle2,pickupShipment,UL.122,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,10:10
+vehicle2,pickupShipment,UL.96,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,10:10
+vehicle2,pickupShipment,UL.131,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,10:10
+vehicle2,pickupShipment,UL.132,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,10:10
+vehicle2,pickupShipment,UL.113,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,10:10
+vehicle2,pickupShipment,UL.118,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,10:10
+vehicle2,pickupShipment,UL.135,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,10:10
+vehicle2,deliverShipment,UL.127,Via Gian Rinaldo Carli 14 20162 Milano,45.521004,9.171454,10:24
+vehicle2,deliverShipment,UL.96,Via Angeloni 20 20161 Milano,45.526561,9.175753,10:39
+vehicle2,deliverShipment,UL.145,Via Palanzone 33 20162 Milano,45.518412,9.192224,10:59
+vehicle2,deliverShipment,UL.131,Viale Suzzani 155 20162 Milano,45.516303,9.203130,11:13
+vehicle2,deliverShipment,UL.135,Viale Suzzani 239 20162 Milano,45.522265,9.206441,11:26
+vehicle2,deliverShipment,UL.118,Via Val Maira 14 20162 Milano,45.508965,9.196331,11:43
+vehicle2,deliverShipment,UL.122,Via Abbazzia 4 20125 Milano,45.500702,9.198900,11:59
+vehicle2,deliverShipment,UL.132,Via Pellini 1 20125 Milano,45.496016,9.203616,12:12
+vehicle2,deliverShipment,UL.113,Viale Lunigiana 8 20125 Milano,45.491531,9.205770,12:26
+vehicle2,deliverShipment,UL.151,Via Murat 5 20159 Milano,45.497037,9.191637,12:41
+vehicle2,pickupShipment,UL.147,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,12:59
+vehicle2,pickupShipment,UL.165,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,13:09
+vehicle2,deliverShipment,UL.147,Via Grigna 9 20155 Milano,45.493064,9.156584,13:19
+vehicle2,deliverShipment,UL.165,via Gran San Bernardo 6 20155 Milano,45.488464,9.167776,13:34
+vehicle2,end,,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,13:57
+vehicle3,start,,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,10:00
+vehicle3,pickupShipment,UL.111,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,10:00
+vehicle3,pickupShipment,UL.106,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,10:10
+vehicle3,pickupShipment,UL.99,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,10:10
+vehicle3,pickupShipment,UL.108,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,10:10
+vehicle3,pickupShipment,UL.140,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,10:10
+vehicle3,pickupShipment,UL.148,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,10:10
+vehicle3,pickupShipment,UL.158,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,10:10
+vehicle3,pickupShipment,UL.166,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,10:10
+vehicle3,pickupShipment,UL.114,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,10:10
+vehicle3,pickupShipment,UL.121,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,10:10
+vehicle3,deliverShipment,UL.106,Piazza Falterona 3 20148 Milano,45.473655,9.140177,10:28
+vehicle3,deliverShipment,UL.158,Piazza Velasquez 7 20148 Milano,45.467822,9.140717,10:42
+vehicle3,deliverShipment,UL.108,Via Morgantini 25 20148 Milano,45.468939,9.133606,10:54
+vehicle3,deliverShipment,UL.148,Via Forze Armate 44 20147 Milano,45.463724,9.132501,11:09
+vehicle3,deliverShipment,UL.99,via Saint Boin 38 20147 Milano,45.457836,9.121940,11:24
+vehicle3,deliverShipment,UL.140,Via Inganni 40 20147 Milano,45.451312,9.125833,11:37
+vehicle3,deliverShipment,UL.111,Piazza Frattini 20146 Milano,45.451689,9.143116,11:56
+vehicle3,deliverShipment,UL.166,Via T. Vignoli 42 20146 Milano,45.452580,9.148140,12:08
+vehicle3,deliverShipment,UL.121,Via Vetta d'Italia 18 20144 Milano,45.460633,9.157468,12:24
+vehicle3,deliverShipment,UL.114,Via Alcuino 18 20149 Milano,45.483544,9.156403,12:49
+vehicle3,pickupShipment,UL.98,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,13:14
+vehicle3,deliverShipment,UL.98,Via Imbonati 24 20159 Milano,45.502053,9.182626,13:32
+vehicle3,end,,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,13:51
+vehicle1,start,,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,10:00
+vehicle1,pickupShipment,UL.157,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,10:00
+vehicle1,pickupShipment,UL.120,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,10:10
+vehicle1,pickupShipment,UL.124,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,10:10
+vehicle1,pickupShipment,UL.149,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,10:10
+vehicle1,pickupShipment,UL.156,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,10:10
+vehicle1,pickupShipment,UL.97,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,10:10
+vehicle1,pickupShipment,UL.153,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,10:10
+vehicle1,pickupShipment,UL.168,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,10:10
+vehicle1,pickupShipment,UL.107,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,10:10
+vehicle1,pickupShipment,UL.144,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,10:10
+vehicle1,deliverShipment,UL.153,Via Porpora 169 20131 Milano,45.486254,9.233302,10:30
+vehicle1,deliverShipment,UL.107,Via Negroli 55A 20133 Milano,45.467664,9.232154,10:49
+vehicle1,deliverShipment,UL.156,Via Lomellina 1 20133 Milano,45.462852,9.229975,11:02
+vehicle1,deliverShipment,UL.144,Via Mecenate 8 20138 Milano,45.456243,9.242845,11:18
+vehicle1,deliverShipment,UL.168,Viale Ungheria 4 20138 Milano,45.445475,9.242987,11:33
+vehicle1,deliverShipment,UL.124,Via del Liri 1 20138 Milano,45.445101,9.248501,11:45
+vehicle1,deliverShipment,UL.157,via Pizzolpasso 5 20138 Milano,45.435704,9.240679,12:01
+vehicle1,deliverShipment,UL.120,Via Marochetti 9 20139 Milano,45.439404,9.226448,12:21
+vehicle1,deliverShipment,UL.149,Piazza Cuoco 4 20137 Milano,45.450888,9.224689,12:37
+vehicle1,deliverShipment,UL.97,Viale Abruzzi 4 20131 Milano,45.474062,9.217449,12:59
+vehicle1,end,,Via Enrico Annibale Butti 18 20158 Milano,45.498715,9.174870,13:30

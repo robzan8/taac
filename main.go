@@ -14,15 +14,15 @@ func main() {
 	args := os.Args[1:]
 	if len(args) < 3 {
 		log.Fatal(`Not enough input arguments provided.
-Usage: hop vehicles.csv services.csv your-graphhopper-api-key >result.csv`)
+Usage: hop vehicles.csv shipments.csv your-graphhopper-api-key >result.csv`)
 	}
 	vehiclesName := args[0]
-	servicesName := args[1]
+	shipmentsName := args[1]
 	key := args[2]
 
 	vehiclesTab := readTable(vehiclesName)
-	servicesTab := readTable(servicesName)
-	solutionTab, err := routeopt.SolveTables(vehiclesTab, servicesTab, key)
+	shipmentsTab := readTable(shipmentsName)
+	solutionTab, err := routeopt.SolveTables(vehiclesTab, shipmentsTab, key)
 	if err != nil {
 		log.Fatal(err)
 	}

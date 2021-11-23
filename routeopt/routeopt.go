@@ -13,14 +13,14 @@ import (
 type Problem struct {
 	Vehicles     []Vehicle     `json:"vehicles"`
 	VehicleTypes []VehicleType `json:"vehicle_types"`
-	Services     []Service     `json:"services"`
+	Shipments    []Shipment    `json:"shipments"`
 }
 
-func CreateProblem(vehicles []Vehicle, services []Service) Problem {
+func CreateProblem(vehicles []Vehicle, shipments []Shipment) Problem {
 	return Problem{
 		Vehicles:     vehicles,
 		VehicleTypes: []VehicleType{cargoBikeType},
-		Services:     services,
+		Shipments:    shipments,
 	}
 }
 
@@ -30,7 +30,7 @@ type Solution struct {
 			VehicleId  string `json:"vehicle_id"`
 			Activities []struct {
 				Type        string  `json:"type"`
-				ServiceId   string  `json:"id"`
+				ShipmentId  string  `json:"id"`
 				Address     Address `json:"address"`
 				ArrivalTime int64   `json:"arr_time"`
 				EndTime     int64   `json:"end_time"`
@@ -62,16 +62,16 @@ func Solve(prob Problem, key string) (Solution, error) {
 	return s, err
 }
 
-func SolveTables(vehiclesTab, servicesTab [][]string, key string) ([][]string, error) {
+func SolveTables(vehiclesTab, shipmentsTab [][]string, key string) ([][]string, error) {
 	vehicles, err := ParseVehicles(vehiclesTab)
 	if err != nil {
 		return nil, err
 	}
-	services, err := ParseServices(servicesTab)
+	shipments, err := ParseShipments(shipmentsTab)
 	if err != nil {
 		return nil, err
 	}
-	problem := CreateProblem(vehicles, services)
+	problem := CreateProblem(vehicles, shipments)
 	solution, err := Solve(problem, key)
 	if err != nil {
 		return nil, err
@@ -80,8 +80,8 @@ func SolveTables(vehiclesTab, servicesTab [][]string, key string) ([][]string, e
 }
 
 func SolutionToTab(s Solution) [][]string {
-	tab := [][]string{{"vehicle id", "activity type", "service id",
-		"address", "latitude", "longitude", "time"}}
+	tab := [][]string{{"vehicle id", "activity type", "shipment id",
+		"address", "lat", "lon", "time"}}
 	for _, route := range s.Solution.Routes {
 		for _, act := range route.Activities {
 			unixTime := act.ArrivalTime
@@ -90,7 +90,7 @@ func SolutionToTab(s Solution) [][]string {
 			}
 			lat := fmt.Sprintf("%f", act.Address.Lat)
 			lon := fmt.Sprintf("%f", act.Address.Lon)
-			tab = append(tab, []string{route.VehicleId, act.Type, act.ServiceId,
+			tab = append(tab, []string{route.VehicleId, act.Type, act.ShipmentId,
 				act.Address.Id, lat, lon, formatHourMin(unixTime),
 			})
 		}
@@ -135,35 +135,45 @@ func ParseVehicles(tab [][]string) ([]Vehicle, error) {
 	for i := 1; i < len(tab); i++ {
 		rec := tab[i]
 		if len(rec) != 7 {
-			return vs, fmt.Errorf("Line in vehicles csv must have 7 entries")
+			return nil, fmt.Errorf("Line in vehicles csv must have 7 entries")
 		}
 		var v Vehicle
 		v.Id = rec[0]
 		v.Type = rec[1]
 		if !supportedVehicleTypes[v.Type] {
-			return vs, fmt.Errorf("Unsupported vehicle type: %s", v.Type)
+			return nil, fmt.Errorf("Unsupported vehicle type: %s", v.Type)
 		}
-		v.StartAddress.Id = rec[2]
 		var err error
-		v.StartAddress.Lat, err = strconv.ParseFloat(rec[3], 64)
+		v.StartAddress, err = parseAddress(rec[2:])
 		if err != nil {
-			return vs, fmt.Errorf("Invalid float as latitude: %s", rec[3])
-		}
-		v.StartAddress.Lon, err = strconv.ParseFloat(rec[4], 64)
-		if err != nil {
-			return vs, fmt.Errorf("Invalid float as longitude: %s", rec[4])
+			return nil, err
 		}
 		v.EarliestStart, err = unixTime(rec[5])
 		if err != nil {
-			return vs, err
+			return nil, err
 		}
 		v.LatestEnd, err = unixTime(rec[6])
 		if err != nil {
-			return vs, err
+			return nil, err
 		}
 		vs = append(vs, v)
 	}
 	return vs, nil
+}
+
+func parseAddress(rec []string) (Address, error) {
+	var a Address
+	a.Id = rec[0]
+	var err error
+	a.Lat, err = strconv.ParseFloat(rec[1], 64)
+	if err != nil {
+		return Address{}, fmt.Errorf("Invalid float as latitude: %s", rec[1])
+	}
+	a.Lon, err = strconv.ParseFloat(rec[2], 64)
+	if err != nil {
+		return Address{}, fmt.Errorf("Invalid float as longitude: %s", rec[2])
+	}
+	return a, nil
 }
 
 // hourMin is in the format "23:59"
@@ -176,59 +186,44 @@ func unixTime(hourMin string) (int64, error) {
 	return (hour*60 + min) * 60, nil
 }
 
-type Service struct {
-	Id          string       `json:"id"`
-	Address     Address      `json:"address"`
-	Size        [1]int       `json:"size"`
-	Duration    int64        `json:"duration"`
-	TimeWindows []TimeWindow `json:"time_windows,omitempty"`
+type Shipment struct {
+	Id       string   `json:"id"`
+	Size     [1]int   `json:"size"`
+	Pickup   Delivery `json:"pickup"`
+	Delivery Delivery `json:"delivery"`
 }
 
-type TimeWindow struct {
-	Earliest int64 `json:"earliest"`
-	Latest   int64 `json:"latest"`
+type Delivery struct {
+	Address  Address `json:"address"`
+	PrepTime int64   `json:"preparation_time"`
 }
 
-const servicesDuration = 10 * 60 // 10min
+const deliveryPrepTime = 10 * 60 // 10min
 
-func ParseServices(tab [][]string) ([]Service, error) {
-	var ss []Service
+func ParseShipments(tab [][]string) ([]Shipment, error) {
+	var ss []Shipment
 	for i := 1; i < len(tab); i++ {
 		rec := tab[i]
-		if len(rec) != 7 {
-			return ss, fmt.Errorf("Line in services csv must have 7 entries")
+		if len(rec) != 8 {
+			return nil, fmt.Errorf("Line in shipments csv must have 8 entries")
 		}
-		var s Service
-		s.Duration = servicesDuration
+		var s Shipment
 		s.Id = rec[0]
 		var err error
 		s.Size[0], err = strconv.Atoi(rec[1])
 		if err != nil || s.Size[0] < 0 {
-			return ss, fmt.Errorf("Invalid integer as service size: %s", rec[1])
+			return nil, fmt.Errorf("Invalid integer as shipment size: %s", rec[1])
 		}
-		s.Address.Id = rec[2]
-		s.Address.Lat, err = strconv.ParseFloat(rec[3], 64)
+		s.Pickup.Address, err = parseAddress(rec[2:])
 		if err != nil {
-			return ss, fmt.Errorf("Invalid float as latitude: %s", rec[3])
+			return nil, err
 		}
-		s.Address.Lon, err = strconv.ParseFloat(rec[4], 64)
+		s.Pickup.PrepTime = deliveryPrepTime
+		s.Delivery.Address, err = parseAddress(rec[5:])
 		if err != nil {
-			return ss, fmt.Errorf("Invalid float as longitude: %s", rec[4])
+			return nil, err
 		}
-		if rec[5] != "" && rec[6] != "" {
-			earliest, err := unixTime(rec[5])
-			if err != nil {
-				return ss, err
-			}
-			latest, err := unixTime(rec[6])
-			if err != nil {
-				return ss, err
-			}
-			s.TimeWindows = []TimeWindow{{
-				Earliest: earliest,
-				Latest:   latest,
-			}}
-		}
+		s.Delivery.PrepTime = deliveryPrepTime
 		ss = append(ss, s)
 	}
 	return ss, nil
