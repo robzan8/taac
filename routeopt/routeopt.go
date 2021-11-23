@@ -35,6 +35,9 @@ type Solution struct {
 				EndTime     int64   `json:"end_time"`
 			} `json:"activities"`
 		} `json:"routes"`
+		Unassigned struct {
+			Shipments []string `json:"shipments"`
+		} `json:"unassigned"`
 	} `json:"solution"`
 }
 
@@ -93,6 +96,9 @@ func SolutionToTab(s Solution) [][]string {
 				act.Address.Id, lat, lon, formatHourMin(unixTime),
 			})
 		}
+	}
+	for _, shipId := range s.Solution.Unassigned.Shipments {
+		tab = append(tab, []string{"", "unassigned", shipId})
 	}
 	return tab
 }
