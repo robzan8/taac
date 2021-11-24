@@ -210,7 +210,7 @@ type Delivery struct {
 	PrepTime int64   `json:"preparation_time"`
 }
 
-const deliveryPrepTime = 10 * 60 // 10min
+const deliveryPrepTime = 5 * 60 // 5min
 
 func ParseShipments(tab [][]string) ([]Shipment, error) {
 	var ss []Shipment
