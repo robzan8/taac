@@ -166,7 +166,8 @@ func writeCsvSolution(out io.Writer, s Solution) error {
 			return err
 		}
 	}
-	return nil
+	w.Flush()
+	return w.Error()
 }
 
 func translateActType(t string) string {
