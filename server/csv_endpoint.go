@@ -91,6 +91,13 @@ func csvPost(w http.ResponseWriter, req *http.Request) {
 func readCsvShipments(in io.Reader, geocodeKey string) ([]Shipment, error) {
 	var ships []Shipment
 	r := csv.NewReader(in)
+	_, err := r.Read() // read away the header
+	if err == io.EOF {
+		return nil, fmt.Errorf("Empty shipments file")
+	}
+	if err != nil {
+		return nil, err
+	}
 	for {
 		rec, err := r.Read()
 		if err == io.EOF {

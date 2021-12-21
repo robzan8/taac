@@ -3,32 +3,57 @@
 <head>
 <meta charset="UTF-8">
 <title>taac!</title>
+<style>
+	body {
+		padding: 10px;
+	}
+	h1 {
+		display: inline-block;
+		width: 600px;
+		text-align: center;
+		color: #00f;
+		font-size: 40px;
+	}
+	h1 > span {
+		color: #f0f;
+	}
+	form {
+		width: 600px;
+		display: grid;
+		grid-template-columns: auto 350px;
+		gap: 13px;
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+	form > span {
+		text-align: right;
+	}
+</style>
 </head>
 
 <body>
-<h1 style="color: #00f;">Taac<span style="color: #f0f;">!</span></h1>
-<br>
+<h1>Taac<span>!</span></h1>
+
 <form enctype="multipart/form-data" action="/solution.csv" method="post">
-	Numero di riders:
+	<span>Numero di riders:</span>
 	<input type="number" min="1" max="10" name="numVehicles" value="2" required>
-	Indirizzo di partenza:
+	<span>Indirizzo di partenza:</span>
 	<input type="text" name="startAddress" value="Via Adriano, 109, 20128 Milano" required>
-	<br>
-	<br>
-	Orario di inizio turno: <input type="time" name="startTime" value="09:00" required>
-	Orario di fine turno: <input type="time" name="endTime" value="13:00" required>
-	<br>
-	<br>
-	API key di ottimizzazione rotte: <input type="text" name="routeoptKey" required>
-	API key di geocoding: <input type="text" name="geocodeKey" required>
-	<br>
-	<br>
-	Lista consegne: <input type="file" accept=".csv" name="shipments" required>
+	<span>Orario di inizio turno:</span>
+	<input type="time" name="startTime" value="09:00" required>
+	<span>Orario di fine turno:</span>
+	<input type="time" name="endTime" value="13:00" required>
+	<span>API key graphhopper:</span>
+	<input type="text" name="routeoptKey" required>
+	<span>API key di geocoding:</span>
+	<input type="text" name="geocodeKey" required>
+	<span>Lista consegne:</span>
+	<input type="file" accept=".csv" name="shipments" required>
+	<span></span>
 	<input type="submit" value="Go!">
-	<br>
-	<br>
-	<a href="/shipments.csv" target="_blank">Una lista consegne di esempio si trova qui.</a>
 </form>
+<br>
+<a href="/shipments.csv" target="_blank">Una lista consegne di esempio si trova qui.</a>
 </body>
 
 </html>
