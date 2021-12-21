@@ -1,4 +1,4 @@
-<a href="https://taaaac.herokuapp.com/" target="_blank">https://taaaac.herokuapp.com/</a>
+<https://taaaac.herokuapp.com/>
 
 To run it locally:
 
