@@ -43,6 +43,11 @@ func csvPost(w http.ResponseWriter, req *http.Request) {
 		err = fmt.Errorf("numVehicles must be an integer between 1 and 10")
 		return
 	}
+	parcelsPerBike, err := strconv.Atoi(req.FormValue("parcelsPerBike"))
+	if err != nil || parcelsPerBike < 1 || parcelsPerBike > 100 {
+		err = fmt.Errorf("parcelsPerBike must be an integer between 1 and 100")
+		return
+	}
 	var startAddr Address
 	startAddr.Str = req.FormValue("startAddress")
 	startAddr.Lat, startAddr.Lon, err = GeocodeAddress(startAddr.Str, geocodeKey)
@@ -73,7 +78,8 @@ func csvPost(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	defer f.Close()
-	ships, err := readCsvShipments(f, geocodeKey)
+	shipSize := CargoBikeType.Capacity[0] / parcelsPerBike
+	ships, err := readCsvShipments(f, geocodeKey, shipSize)
 	if err != nil {
 		return
 	}
@@ -88,7 +94,7 @@ func csvPost(w http.ResponseWriter, req *http.Request) {
 	err = writeCsvSolution(w, solution)
 }
 
-func readCsvShipments(in io.Reader, geocodeKey string) ([]Shipment, error) {
+func readCsvShipments(in io.Reader, geocodeKey string, shipSize int) ([]Shipment, error) {
 	var ships []Shipment
 	r := csv.NewReader(in)
 	_, err := r.Read() // read away the header
@@ -107,7 +113,7 @@ func readCsvShipments(in io.Reader, geocodeKey string) ([]Shipment, error) {
 			return nil, err
 		}
 
-		s, err := parseShipment(rec, geocodeKey)
+		s, err := parseShipment(rec, geocodeKey, shipSize)
 		if err != nil {
 			return nil, err
 		}
@@ -116,13 +122,13 @@ func readCsvShipments(in io.Reader, geocodeKey string) ([]Shipment, error) {
 	return ships, nil
 }
 
-func parseShipment(rec []string, geocodeKey string) (Shipment, error) {
+func parseShipment(rec []string, geocodeKey string, shipSize int) (Shipment, error) {
 	if len(rec) != 3 {
 		return Shipment{}, fmt.Errorf("Line in shipments csv must have 3 entries")
 	}
 	var s Shipment
 	s.Id = rec[0]
-	s.Size[0] = CargoBikeType.Capacity[0] / 20 // max 20 parcels per trip
+	s.Size[0] = shipSize
 
 	addr := rec[1]
 	lat, lon, err := GeocodeAddress(addr, geocodeKey)
