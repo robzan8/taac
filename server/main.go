@@ -7,10 +7,15 @@ import (
 	"os"
 )
 
+var (
+	port        = os.Getenv("PORT")
+	geocodeKey  = os.Getenv("GEOCODE_KEY")
+	routeoptKey = os.Getenv("ROUTEOPT_KEY")
+)
+
 func main() {
-	port := os.Getenv("PORT")
-	if port == "" {
-		log.Fatal("$PORT must be set!")
+	if port == "" || geocodeKey == "" || routeoptKey == "" {
+		log.Fatal("Some environment variable not set")
 	}
 
 	http.Handle("/", http.FileServer(http.Dir("./server/static")))

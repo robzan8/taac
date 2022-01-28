@@ -38,13 +38,13 @@ func store(addr string, loc location) {
 	}
 }
 
-func GeocodeAddress(addr, apiKey string) (lat, lon float64, err error) {
+func GeocodeAddress(addr string) (lat, lon float64, err error) {
 	loc := load(addr)
 	if loc != (location{}) {
 		return loc.Lat, loc.Lon, nil
 	}
 
-	loc, err = geocodeAddressApi(addr, apiKey)
+	loc, err = geocodeAddressApi(addr)
 	if err != nil {
 		return
 	}
@@ -52,9 +52,9 @@ func GeocodeAddress(addr, apiKey string) (lat, lon float64, err error) {
 	return loc.Lat, loc.Lon, nil
 }
 
-func geocodeAddressApi(addr, key string) (loc location, err error) {
+func geocodeAddressApi(addr string) (loc location, err error) {
 	base := "https://maps.googleapis.com/maps/api/geocode/json"
-	queryUrl := fmt.Sprintf("%s?address=%s&key=%s", base, url.QueryEscape(addr), key)
+	queryUrl := fmt.Sprintf("%s?address=%s&key=%s", base, url.QueryEscape(addr), geocodeKey)
 	var resp *http.Response
 	resp, err = http.Get(queryUrl)
 	if err != nil {

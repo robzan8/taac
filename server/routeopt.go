@@ -87,7 +87,7 @@ type Solution struct {
 	} `json:"solution"`
 }
 
-func Solve(prob Problem, routeoptKey string) (Solution, error) {
+func Solve(prob Problem) (Solution, error) {
 	var s Solution
 	body, err := json.Marshal(&prob)
 	if err != nil {

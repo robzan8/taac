@@ -33,11 +33,6 @@ func csvPost(w http.ResponseWriter, req *http.Request) {
 		}
 	}()
 
-	routeoptKey, geocodeKey := req.FormValue("routeoptKey"), req.FormValue("geocodeKey")
-	if routeoptKey == "" || geocodeKey == "" {
-		err = fmt.Errorf("Some API key not provided")
-		return
-	}
 	numVehicles, err := strconv.Atoi(req.FormValue("numVehicles"))
 	if err != nil || numVehicles < 1 || numVehicles > 10 {
 		err = fmt.Errorf("numVehicles must be an integer between 1 and 10")
@@ -50,7 +45,7 @@ func csvPost(w http.ResponseWriter, req *http.Request) {
 	}
 	var startAddr Address
 	startAddr.Str = req.FormValue("startAddress")
-	startAddr.Lat, startAddr.Lon, err = GeocodeAddress(startAddr.Str, geocodeKey)
+	startAddr.Lat, startAddr.Lon, err = GeocodeAddress(startAddr.Str)
 	if err != nil {
 		return
 	}
@@ -85,7 +80,7 @@ func csvPost(w http.ResponseWriter, req *http.Request) {
 	}
 
 	problem := CreateProblem(vehicles, ships)
-	solution, err := Solve(problem, routeoptKey)
+	solution, err := Solve(problem)
 	if err != nil {
 		return
 	}
@@ -131,7 +126,7 @@ func parseShipment(rec []string, geocodeKey string, shipSize int) (Shipment, err
 	s.Size[0] = shipSize
 
 	addr := rec[1]
-	lat, lon, err := GeocodeAddress(addr, geocodeKey)
+	lat, lon, err := GeocodeAddress(addr)
 	if err != nil {
 		return Shipment{}, err
 	}
@@ -139,7 +134,7 @@ func parseShipment(rec []string, geocodeKey string, shipSize int) (Shipment, err
 	s.Pickup.PrepTime = PickupPrepTime
 
 	addr = rec[2]
-	lat, lon, err = GeocodeAddress(addr, geocodeKey)
+	lat, lon, err = GeocodeAddress(addr)
 	if err != nil {
 		return Shipment{}, err
 	}
