@@ -180,13 +180,13 @@ func writeCsvSolution(out io.Writer, s Solution) error {
 
 func translateActType(t string) string {
 	switch t {
-	case "start":
+	case ActivityTypeStart:
 		return "partenza"
-	case "end":
+	case ActivityTypeEnd:
 		return "arrivo"
-	case "pickupShipment":
+	case ActivityTypePickup:
 		return "ritiro"
-	case "deliverShipment":
+	case ActivityTypeDeliver:
 		return "consegna"
 	default:
 		return t

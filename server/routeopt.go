@@ -11,6 +11,11 @@ import (
 const (
 	PickupPrepTime   = 15 * 60 // 15min
 	DeliveryPrepTime = 5 * 60  // 5min
+
+	ActivityTypeStart   = "start"
+	ActivityTypeEnd     = "end"
+	ActivityTypePickup  = "pickupShipment"
+	ActivityTypeDeliver = "deliverShipment"
 )
 
 type Problem struct {

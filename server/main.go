@@ -3,23 +3,31 @@ package main
 import (
 	"fmt"
 	"log"
+	"math/rand"
 	"net/http"
 	"os"
+	"time"
 )
 
 var (
 	port        = os.Getenv("PORT")
 	geocodeKey  = os.Getenv("GEOCODE_KEY")
 	routeoptKey = os.Getenv("ROUTEOPT_KEY")
+	dinoUser    = os.Getenv("DINO_USER")
+	dinoPass    = os.Getenv("DINO_PASS")
 )
 
 func main() {
-	if port == "" || geocodeKey == "" || routeoptKey == "" {
+	if port == "" || geocodeKey == "" || routeoptKey == "" ||
+		dinoUser == "" || dinoPass == "" {
 		log.Fatal("Some environment variable not set")
 	}
 
+	rand.Seed(time.Now().UnixNano())
+
 	http.Handle("/", http.FileServer(http.Dir("./server/static")))
 	http.HandleFunc("/solution.csv", csvEndpoint)
+	http.HandleFunc("/schedule.txt", scheduleEndpoint)
 
 	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
