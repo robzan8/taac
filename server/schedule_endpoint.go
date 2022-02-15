@@ -21,7 +21,7 @@ type shipmentData struct {
 		DeliveryAddress string `json:"delivery_address"`
 		Notes           string `json:"notes"`
 
-		RiderId        string `json:"rider_id"`
+		RiderName      string `json:"rider_name"`
 		ShipmentDay    string `json:"shipment_day"`
 		PickupTime     string `json:"pickup_time"`
 		DeliveryTime   string `json:"delivery_time"`
@@ -51,7 +51,7 @@ const graphqlUrl = "https://hkfuuoyvxplvytbyarwl.nhost.run/v1/graphql"
 
 var (
 	scheduleMu   sync.Mutex
-	dateRegex, _ = regexp.Compile(`\d\d\d\d-[0-1]\d-[0-3]\d`)
+	dateRegex, _ = regexp.Compile(`^\d{4}-[0-1]\d-[0-3]\d$`)
 )
 
 func scheduleEndpoint(w http.ResponseWriter, req *http.Request) {
@@ -137,13 +137,13 @@ func scheduleGet(w http.ResponseWriter, req *http.Request) {
 		shipsById[s.Id] = &shipsToBeSched[i]
 	}
 	for _, route := range solution.Solution.Routes {
-		riderId := route.VehicleId
+		riderName := route.VehicleId
 		for _, act := range route.Activities {
 			switch act.Type {
 			case ActivityTypePickup:
 				ship := shipsById[act.ShipmentId]
 				ship.Data.DeliveryStatus = deliveryStatusScheduled
-				ship.Data.RiderId = riderId
+				ship.Data.RiderName = riderName
 				ship.Data.ShipmentDay = schedDate
 				pickupTime := act.ArrivalTime
 				if pickupTime == 0 {
@@ -323,7 +323,7 @@ func availableRiders(riders []riderData, day string, ships []shipmentData) []rid
 	busyRiders := make(map[string]bool)
 	for _, s := range ships {
 		if s.Data.ShipmentDay == day {
-			busyRiders[s.Data.RiderId] = true
+			busyRiders[s.Data.RiderName] = true
 		}
 	}
 	rand.Shuffle(len(riders), func(i, j int) {
@@ -332,7 +332,7 @@ func availableRiders(riders []riderData, day string, ships []shipmentData) []rid
 	const maxNumRiders = 2
 	var selected []riderData
 	for _, r := range riders {
-		if !busyRiders[r.Id] {
+		if !busyRiders[r.Data.Name] {
 			selected = append(selected, r)
 			if len(selected) == maxNumRiders {
 				break
@@ -381,7 +381,7 @@ func riderToVehicle(r riderData) (v Vehicle, err error) {
 		return
 	}
 	return Vehicle{
-		Id:            r.Id,
+		Id:            r.Data.Name,
 		Type:          r.Data.VehicleTypeId,
 		StartAddress:  Address{r.Data.StartAddress, lat, lon},
 		EarliestStart: start,
