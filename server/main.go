@@ -38,11 +38,7 @@ func formatHourMin(unixTime int64) string {
 	minutes := unixTime / 60
 	min := minutes % 60
 	hour := (minutes / 60) % 24
-	format := "%d:%d"
-	if min < 10 {
-		format = "%d:0%d"
-	}
-	return fmt.Sprintf(format, hour, min)
+	return fmt.Sprintf("%02d:%02d", hour, min)
 }
 
 // hourMin is in the format "23:59"
