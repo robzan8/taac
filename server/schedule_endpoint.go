@@ -47,7 +47,7 @@ type riderData struct {
 	} `json:"data"`
 }
 
-const graphqlUrl = "https://hkfuuoyvxplvytbyarwl.nhost.run/v1/graphql"
+const graphqlUrl = "https://apfybdlkrpoqwnxchjgg.nhost.run/v1/graphql"
 
 var (
 	scheduleMu   sync.Mutex
@@ -84,10 +84,12 @@ func scheduleGet(w http.ResponseWriter, req *http.Request) {
 		err = fmt.Errorf("date must be in the format 2022-01-31")
 		return
 	}
-	authHeader, err := dinoLogin()
-	if err != nil {
+	authToken := req.FormValue("authToken")
+	if authToken == "" {
+		err = errors.New("No authToken provided")
 		return
 	}
+	authHeader := "Bearer " + authToken
 	riderData, err := getRiderData(authHeader)
 	if err != nil {
 		return
@@ -174,36 +176,6 @@ func scheduleGet(w http.ResponseWriter, req *http.Request) {
 	for _, s := range schedShips {
 		fmt.Fprint(w, "\n"+s.Id)
 	}
-}
-
-func dinoLogin() (authHeader string, err error) {
-	const (
-		url   = "https://auth.gnucoop.io/api/login"
-		appId = "61dbbdd8-7144-45c6-bb91-8497a31849b0"
-		auth  = "jVe6r5r3u-0sAHjo1nzAIk6j5JTB1_qZOunuY4oMSSBIXClCKbA-3rJb"
-	)
-	reqBody := fmt.Sprintf(`{"loginId":%q,"password":%q,"applicationId":%q}`,
-		dinoUser, dinoPass, appId)
-	req, err := http.NewRequest(http.MethodPost, url, strings.NewReader(reqBody))
-	if err != nil {
-		return "", fmt.Errorf("Dino login error: %s", err)
-	}
-	req.Header.Add("Content-Type", "application/json")
-	req.Header.Add("Authorization", auth)
-	resp, err := http.DefaultClient.Do(req)
-	if err != nil {
-		return "", fmt.Errorf("Dino login error: %s", err)
-	}
-	defer resp.Body.Close()
-	if resp.StatusCode != http.StatusOK {
-		return "", fmt.Errorf("Dino login fail")
-	}
-	var msg struct {
-		Token string `json:"token"`
-	}
-	dec := json.NewDecoder(resp.Body)
-	err = dec.Decode(&msg)
-	return "Bearer " + msg.Token, err
 }
 
 type QueryErrors struct {
