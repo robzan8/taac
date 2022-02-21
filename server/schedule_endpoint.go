@@ -215,7 +215,7 @@ func getRiderData(authHeader string) ([]riderData, error) {
 	const query = `{
 		form_data(
 			where: {_and:[
-				{schema_id:{_eq:"2ab47e7b-44fa-4e5d-8b31-4f94d7e9a1bd"}},
+				{schema_id:{_eq:"4b627641-62ff-4a18-99ca-6724acfdbcb7"}},
 				{is_deleted:{_eq:false}}
 			]},
 			limit: 50
@@ -242,7 +242,7 @@ func getShipmentData(authHeader string) ([]shipmentData, error) {
 	const query = `{
 		form_data(
 			where: {_and:[
-				{schema_id:{_eq:"f66e78ba-321f-46fb-aedb-7c21639eff52"}},
+				{schema_id:{_eq:"46cceffa-3f83-4d60-bb13-0767299a8352"}},
 				{is_deleted:{_eq:false}}
 			]},
 			order_by: [{created_at: desc}],
