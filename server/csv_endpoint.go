@@ -25,6 +25,12 @@ func csvEndpoint(w http.ResponseWriter, req *http.Request) {
 }
 
 func csvPost(w http.ResponseWriter, req *http.Request) {
+	if req.FormValue("password") != password {
+		w.WriteHeader(http.StatusUnauthorized)
+		fmt.Fprint(w, "Wrong password")
+		return
+	}
+
 	var err error // beware of shadowing
 	defer func() {
 		if err != nil {

@@ -13,13 +13,11 @@ var (
 	port        = os.Getenv("PORT")
 	geocodeKey  = os.Getenv("GEOCODE_KEY")
 	routeoptKey = os.Getenv("ROUTEOPT_KEY")
-	dinoUser    = os.Getenv("DINO_USER")
-	dinoPass    = os.Getenv("DINO_PASS")
+	password    = os.Getenv("PASSWORD")
 )
 
 func main() {
-	if port == "" || geocodeKey == "" || routeoptKey == "" ||
-		dinoUser == "" || dinoPass == "" {
+	if port == "" || geocodeKey == "" || routeoptKey == "" || password == "" {
 		log.Fatal("Some environment variable not set")
 	}
 
