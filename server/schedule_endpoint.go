@@ -17,11 +17,12 @@ type shipmentData struct {
 	User   string `json:"user_data_ref_id"`
 	Schema string `json:"schema_id"`
 	Data   struct {
-		Size            int    `json:"size"`
-		PickupAddress   string `json:"pickup_address"`
-		DeliveryAddress string `json:"delivery_address"`
-		Notes           string `json:"notes"`
-		Deadline        string `json:"deadline,omitempty"`
+		Size               int    `json:"size"`
+		PickupAddress      string `json:"pickup_address"`
+		DeliveryAddress    string `json:"delivery_address"`
+		Notes              string `json:"notes"`
+		Deadline           string `json:"deadline,omitempty"`
+		LatestDeliveryTime string `json:"latest_delivery_time"`
 
 		RiderName      string `json:"rider_name"`
 		ShipmentDay    string `json:"shipment_day,omitempty"`
@@ -398,10 +399,19 @@ func dataToShipment(d shipmentData) (s Shipment, err error) {
 	if err != nil {
 		return
 	}
+	var deliveryTimeWindows []TimeWindow
+	if d.Data.LatestDeliveryTime != "" {
+		var t int64
+		t, err = unixTime(d.Data.LatestDeliveryTime)
+		if err != nil {
+			return
+		}
+		deliveryTimeWindows = []TimeWindow{{0, t}}
+	}
 	return Shipment{
 		Id:       d.Id,
 		Size:     [1]int{d.Data.Size},
-		Pickup:   Delivery{pickupAddr, PickupPrepTime},
-		Delivery: Delivery{deliveryAddr, DeliveryPrepTime},
+		Pickup:   Delivery{pickupAddr, PickupPrepTime, nil},
+		Delivery: Delivery{deliveryAddr, DeliveryPrepTime, deliveryTimeWindows},
 	}, nil
 }

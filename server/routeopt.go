@@ -63,8 +63,14 @@ type Shipment struct {
 }
 
 type Delivery struct {
-	Address  Address `json:"address"`
-	PrepTime int64   `json:"preparation_time"`
+	Address     Address      `json:"address"`
+	PrepTime    int64        `json:"preparation_time"`
+	TimeWindows []TimeWindow `json:"time_windows,omitempty"`
+}
+
+type TimeWindow struct {
+	Earliest int64 `json:"earliest"`
+	Latest   int64 `json:"latest"`
 }
 
 func CreateProblem(vehicles []Vehicle, shipments []Shipment) Problem {
