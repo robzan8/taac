@@ -7,6 +7,7 @@ import (
 	"math/rand"
 	"net/http"
 	"regexp"
+	"sort"
 	"strings"
 	"sync"
 )
@@ -20,9 +21,10 @@ type shipmentData struct {
 		PickupAddress   string `json:"pickup_address"`
 		DeliveryAddress string `json:"delivery_address"`
 		Notes           string `json:"notes"`
+		Deadline        string `json:"deadline,omitempty"`
 
 		RiderName      string `json:"rider_name"`
-		ShipmentDay    string `json:"shipment_day"`
+		ShipmentDay    string `json:"shipment_day,omitempty"`
 		PickupTime     string `json:"pickup_time"`
 		DeliveryTime   string `json:"delivery_time"`
 		DeliveryStatus string `json:"delivery_status"`
@@ -120,12 +122,17 @@ func scheduleGet(w http.ResponseWriter, req *http.Request) {
 		vehicles = append(vehicles, v)
 	}
 	var ships []Shipment
-	for _, data := range shipsToBeSched {
+	priority := 1
+	for i, data := range shipsToBeSched {
 		var s Shipment
 		s, err = dataToShipment(data)
 		if err != nil {
 			return
 		}
+		if i > 0 && priority < 10 && data.Data.Deadline != shipsToBeSched[i-1].Data.Deadline {
+			priority++
+		}
+		s.Priority = priority
 		ships = append(ships, s)
 	}
 	problem := CreateProblem(vehicles, ships)
@@ -315,6 +322,18 @@ func availableRiders(riders []riderData, day string, ships []shipmentData) []rid
 }
 
 func shipmentsToBeScheduled(ships []shipmentData, availRiders []riderData) []shipmentData {
+	sort.Slice(ships, func(i, j int) bool {
+		deadlineI := ships[i].Data.Deadline
+		deadlineJ := ships[j].Data.Deadline
+		if deadlineI == "" {
+			deadlineI = "9999-12-31"
+		}
+		if deadlineJ == "" {
+			deadlineJ = "9999-12-31"
+		}
+		return deadlineI < deadlineJ
+	})
+
 	locations := make(map[string]bool)
 	const maxNumLocs = 30
 	for _, r := range availRiders {

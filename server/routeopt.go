@@ -59,6 +59,7 @@ type Shipment struct {
 	Size     [1]int   `json:"size"`
 	Pickup   Delivery `json:"pickup"`
 	Delivery Delivery `json:"delivery"`
+	Priority int      `json:"priority,omitempty"`
 }
 
 type Delivery struct {
