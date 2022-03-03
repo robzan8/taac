@@ -6,6 +6,7 @@ import (
 	"io"
 	"net/http"
 	"strconv"
+	"strings"
 )
 
 func csvEndpoint(w http.ResponseWriter, req *http.Request) {
@@ -39,9 +40,14 @@ func csvPost(w http.ResponseWriter, req *http.Request) {
 		}
 	}()
 
-	numVehicles, err := strconv.Atoi(req.FormValue("numVehicles"))
-	if err != nil || numVehicles < 1 || numVehicles > 10 {
-		err = fmt.Errorf("numVehicles must be an integer between 1 and 10")
+	schedDate := req.FormValue("date")
+	if !dateRegex.MatchString(schedDate) {
+		err = fmt.Errorf("date must be in the format 2022-12-31")
+		return
+	}
+	ridersList := req.FormValue("riders")
+	if ridersList == "" {
+		err = fmt.Errorf("empty riders list")
 		return
 	}
 	parcelsPerBike, err := strconv.Atoi(req.FormValue("parcelsPerBike"))
@@ -64,9 +70,9 @@ func csvPost(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	var vehicles []Vehicle
-	for i := 1; i <= numVehicles; i++ {
+	for _, riderName := range strings.Split(ridersList, ",") {
 		vehicles = append(vehicles, Vehicle{
-			Id:            fmt.Sprintf("rider%d", i),
+			Id:            riderName,
 			Type:          CargoBikeId,
 			StartAddress:  startAddr,
 			EarliestStart: startTime,

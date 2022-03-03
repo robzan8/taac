@@ -6,6 +6,7 @@ import (
 	"math/rand"
 	"net/http"
 	"os"
+	"regexp"
 	"time"
 )
 
@@ -14,6 +15,8 @@ var (
 	geocodeKey  = os.Getenv("GEOCODE_KEY")
 	routeoptKey = os.Getenv("ROUTEOPT_KEY")
 	password    = os.Getenv("PASSWORD")
+
+	dateRegex, _ = regexp.Compile(`^\d{4}-[0-1]\d-[0-3]\d$`)
 )
 
 func main() {

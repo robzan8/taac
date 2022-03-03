@@ -35,11 +35,13 @@
 <h1>Taac<span>!</span></h1>
 
 <form enctype="multipart/form-data" action="/solution.csv" method="post">
-	<span>Numero di riders:</span>
-	<input type="number" min="1" max="10" name="numVehicles" value="2" required>
+	<span>Data di consegna:</span>
+	<input type="date" name="date" required>
+	<span>Lista di riders:</span>
+	<input type="text" name="riders" placeholder="Luca Laurenti, Paolo Bonolis" required>
 	<span>Numero di pacchi per bici:</span>
 	<input type="number" min="1" max="100" name="parcelsPerBike" value="10" required>
-	<span>Indirizzo di partenza:</span>
+	<span>Indirizzo di partenza riders:</span>
 	<input type="text" name="startAddress" value="Via Adriano, 109, 20128 Milano" required>
 	<span>Orario di inizio turno:</span>
 	<input type="time" name="startTime" value="09:00" required>

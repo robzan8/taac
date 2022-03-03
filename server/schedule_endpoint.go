@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"math/rand"
 	"net/http"
-	"regexp"
 	"sort"
 	"strings"
 	"sync"
@@ -52,10 +51,7 @@ type riderData struct {
 
 const graphqlUrl = "https://apfybdlkrpoqwnxchjgg.nhost.run/v1/graphql"
 
-var (
-	scheduleMu   sync.Mutex
-	dateRegex, _ = regexp.Compile(`^\d{4}-[0-1]\d-[0-3]\d$`)
-)
+var scheduleMu sync.Mutex
 
 func scheduleEndpoint(w http.ResponseWriter, req *http.Request) {
 	setAllowOrigins(w.Header())
@@ -84,7 +80,7 @@ func scheduleGet(w http.ResponseWriter, req *http.Request) {
 
 	schedDate := req.FormValue("date")
 	if !dateRegex.MatchString(schedDate) {
-		err = fmt.Errorf("date must be in the format 2022-01-31")
+		err = fmt.Errorf("date must be in the format 2022-12-31")
 		return
 	}
 	authToken := req.FormValue("authToken")
