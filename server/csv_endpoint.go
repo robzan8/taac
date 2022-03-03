@@ -72,7 +72,7 @@ func csvPost(w http.ResponseWriter, req *http.Request) {
 	var vehicles []Vehicle
 	for _, riderName := range strings.Split(ridersList, ",") {
 		vehicles = append(vehicles, Vehicle{
-			Id:            riderName,
+			Id:            strings.TrimSpace(riderName),
 			Type:          CargoBikeId,
 			StartAddress:  startAddr,
 			EarliestStart: startTime,
