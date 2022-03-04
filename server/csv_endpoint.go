@@ -86,9 +86,18 @@ func csvPost(w http.ResponseWriter, req *http.Request) {
 	}
 	defer f.Close()
 	shipSize := CargoBikeType.Capacity[0] / parcelsPerBike
-	ships, err := readCsvShipments(f, geocodeKey, shipSize)
+	shipData, err := readCsvShipments(f, shipSize)
 	if err != nil {
 		return
+	}
+	var ships []Shipment
+	for _, d := range shipData {
+		var s Shipment
+		s, err = dataToShipment(d)
+		if err != nil {
+			return
+		}
+		ships = append(ships, s)
 	}
 
 	problem := CreateProblem(vehicles, ships)
@@ -101,8 +110,8 @@ func csvPost(w http.ResponseWriter, req *http.Request) {
 	err = writeCsvSolution(w, solution)
 }
 
-func readCsvShipments(in io.Reader, geocodeKey string, shipSize int) ([]Shipment, error) {
-	var ships []Shipment
+func readCsvShipments(in io.Reader, shipSize int) ([]shipmentData, error) {
+	var ships []shipmentData
 	r := csv.NewReader(in)
 	_, err := r.Read() // read away the header
 	if err == io.EOF {
@@ -111,7 +120,7 @@ func readCsvShipments(in io.Reader, geocodeKey string, shipSize int) ([]Shipment
 	if err != nil {
 		return nil, err
 	}
-	for {
+	for i := 1; true; i++ {
 		rec, err := r.Read()
 		if err == io.EOF {
 			break
@@ -120,39 +129,18 @@ func readCsvShipments(in io.Reader, geocodeKey string, shipSize int) ([]Shipment
 			return nil, err
 		}
 
-		s, err := parseShipment(rec, geocodeKey, shipSize)
-		if err != nil {
-			return nil, err
+		if len(rec) != 3 {
+			return nil, fmt.Errorf("Line in shipments csv must have 3 entries")
 		}
+		var s shipmentData
+		s.Id = strconv.Itoa(i)
+		s.Data.Size = shipSize
+		s.Data.PickupAddress = rec[1]
+		s.Data.DeliveryAddress = rec[2]
+		s.Data.Notes = rec[0]
 		ships = append(ships, s)
 	}
 	return ships, nil
-}
-
-func parseShipment(rec []string, geocodeKey string, shipSize int) (Shipment, error) {
-	if len(rec) != 3 {
-		return Shipment{}, fmt.Errorf("Line in shipments csv must have 3 entries")
-	}
-	var s Shipment
-	s.Id = rec[0]
-	s.Size[0] = shipSize
-
-	addr := rec[1]
-	lat, lon, err := GeocodeAddress(addr)
-	if err != nil {
-		return Shipment{}, err
-	}
-	s.Pickup.Address = Address{addr, lat, lon}
-	s.Pickup.PrepTime = PickupPrepTime
-
-	addr = rec[2]
-	lat, lon, err = GeocodeAddress(addr)
-	if err != nil {
-		return Shipment{}, err
-	}
-	s.Delivery.Address = Address{addr, lat, lon}
-	s.Delivery.PrepTime = DeliveryPrepTime
-	return s, nil
 }
 
 func writeCsvSolution(out io.Writer, s Solution) error {
