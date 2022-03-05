@@ -138,34 +138,7 @@ func scheduleGet(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	shipsById := make(map[string]*shipmentData)
-	for i, s := range shipsToBeSched {
-		shipsById[s.Id] = &shipsToBeSched[i]
-	}
-	for _, route := range solution.Solution.Routes {
-		riderName := route.VehicleId
-		for _, act := range route.Activities {
-			switch act.Type {
-			case ActivityTypePickup:
-				ship := shipsById[act.ShipmentId]
-				ship.Data.DeliveryStatus = deliveryStatusScheduled
-				ship.Data.RiderName = riderName
-				ship.Data.ShipmentDay = schedDate
-				pickupTime := act.ArrivalTime
-				if pickupTime == 0 {
-					pickupTime = act.EndTime
-				}
-				ship.Data.PickupTime = formatHourMin(pickupTime)
-			case ActivityTypeDeliver:
-				ship := shipsById[act.ShipmentId]
-				deliveryTime := act.ArrivalTime
-				if deliveryTime == 0 {
-					deliveryTime = act.EndTime
-				}
-				ship.Data.DeliveryTime = formatHourMin(deliveryTime)
-			}
-		}
-	}
+	writeSolutionIntoShipments(shipsToBeSched, solution, schedDate)
 	var schedShips []shipmentData
 	for _, s := range shipsToBeSched {
 		if s.Data.DeliveryStatus == deliveryStatusScheduled {
@@ -410,4 +383,35 @@ func dataToShipment(d shipmentData) (s Shipment, err error) {
 		Pickup:   Delivery{pickupAddr, PickupPrepTime, nil},
 		Delivery: Delivery{deliveryAddr, DeliveryPrepTime, deliveryTimeWindows},
 	}, nil
+}
+
+func writeSolutionIntoShipments(ships []shipmentData, sol Solution, schedDate string) {
+	shipsById := make(map[string]*shipmentData)
+	for i, s := range ships {
+		shipsById[s.Id] = &ships[i]
+	}
+	for _, route := range sol.Solution.Routes {
+		riderName := route.VehicleId
+		for _, act := range route.Activities {
+			switch act.Type {
+			case ActivityTypePickup:
+				ship := shipsById[act.ShipmentId]
+				ship.Data.DeliveryStatus = deliveryStatusScheduled
+				ship.Data.RiderName = riderName
+				ship.Data.ShipmentDay = schedDate
+				pickupTime := act.ArrivalTime
+				if pickupTime == 0 {
+					pickupTime = act.EndTime
+				}
+				ship.Data.PickupTime = formatHourMin(pickupTime)
+			case ActivityTypeDeliver:
+				ship := shipsById[act.ShipmentId]
+				deliveryTime := act.ArrivalTime
+				if deliveryTime == 0 {
+					deliveryTime = act.EndTime
+				}
+				ship.Data.DeliveryTime = formatHourMin(deliveryTime)
+			}
+		}
+	}
 }
