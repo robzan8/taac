@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"sort"
 	"strconv"
 	"strings"
 )
@@ -106,8 +107,23 @@ func csvPost(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
+	writeSolutionIntoShipments(shipData, solution, schedDate)
+	sort.SliceStable(shipData, func(i, j int) bool {
+		return shipData[i].Data.DeliveryTime < shipData[j].Data.DeliveryTime
+	})
+	sort.SliceStable(shipData, func(i, j int) bool {
+		// We want unassigned shipments at the end.
+		if shipData[i].Data.RiderName == "" {
+			return false
+		}
+		if shipData[j].Data.RiderName == "" {
+			return true
+		}
+		return shipData[i].Data.RiderName < shipData[j].Data.RiderName
+	})
+
 	w.Header().Set("Content-Type", "text/csv; charset=utf-8")
-	err = writeCsvSolution(w, solution)
+	err = writeCsvShipments(w, shipData)
 }
 
 func readCsvShipments(in io.Reader, shipSize int) ([]shipmentData, error) {
@@ -143,52 +159,25 @@ func readCsvShipments(in io.Reader, shipSize int) ([]shipmentData, error) {
 	return ships, nil
 }
 
-func writeCsvSolution(out io.Writer, s Solution) error {
+func writeCsvShipments(out io.Writer, ships []shipmentData) error {
 	w := csv.NewWriter(out)
 	err := w.Write([]string{
-		"rider", "attività",
-		"destinatario/contatti/note", "indirizzo", "orario",
+		"rider", "destinatario/contatti/note", "indirizzo di ritiro",
+		"indirizzo di consegna", "giorno", "orario di ritiro", "orario di consegna",
 	})
 	if err != nil {
 		return err
 	}
-	for _, route := range s.Solution.Routes {
-		for _, act := range route.Activities {
-			unixTime := act.ArrivalTime
-			if unixTime == 0 {
-				unixTime = act.EndTime
-			}
-
-			err = w.Write([]string{
-				route.VehicleId, translateActType(act.Type),
-				act.ShipmentId, act.Address.Str, formatHourMin(unixTime),
-			})
-			if err != nil {
-				return err
-			}
-		}
-	}
-	for _, shipId := range s.Solution.Unassigned.Shipments {
-		err = w.Write([]string{"", "non assegnato", shipId})
+	for _, s := range ships {
+		d := s.Data
+		err = w.Write([]string{
+			d.RiderName, d.Notes, d.PickupAddress, d.DeliveryAddress,
+			d.ShipmentDay, d.PickupTime, d.DeliveryTime,
+		})
 		if err != nil {
 			return err
 		}
 	}
 	w.Flush()
 	return w.Error()
-}
-
-func translateActType(t string) string {
-	switch t {
-	case ActivityTypeStart:
-		return "partenza"
-	case ActivityTypeEnd:
-		return "arrivo"
-	case ActivityTypePickup:
-		return "ritiro"
-	case ActivityTypeDeliver:
-		return "consegna"
-	default:
-		return t
-	}
 }
